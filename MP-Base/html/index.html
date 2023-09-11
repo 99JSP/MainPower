@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>MP-Base HTML</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="./main.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    </head>
+    <body class="body-wrapper">
+        <div class="selection-wrapper" id="noselect">
+            <div class="logo-container shown">
+                <img class="branding-logo" src="./img/logo.png" alt="logo">
+            </div>
+
+            <div class="multichar-container">
+
+
+                <div class="character" data-charid="1">
+                    <button class="create-button" id="create-cid-1" data-cid="1">New Character</button>
+                    <div class="slot-name"><p><span id="slot-player-name"></span></p>
+                    </div>
+                </div>
+        
+                <div class="character" data-charid="2">
+                    <button class="create-button" id="create-cid-2" data-cid="2">New Character</button>
+                    <div class="slot-name"><p><span id="slot-player-name"></span></p>
+                    </div>
+                </div>
+
+                <div class="character" data-charid="3">
+                    <button class="create-button" id="create-cid-3" data-cid="3">New Character</button>
+                    <div class="slot-name"><p><span id="slot-player-name"></span></p>
+                    </div>
+                </div>
+
+                <div class="character" data-charid="4">
+                    <button class="create-button" id="create-cid-4" data-cid="4">New Character</button>
+                    <div class="slot-name"><p><span id="slot-player-name"></span></p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="delete-container hidden">
+                <div class="delete-character">
+                    <div class="modal-contents">
+                        <p><span id="delete-character-title">Are you sure?</span></p>
+                        <button class="accept-delete btn-accept" id="accept-delete">Yes Im Ready</button>
+                        <button class="deny-delete btn-cancel" id="deny-delete">Please No</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="create-container hidden" id="create-container">
+                <div class="create-character-modal" id="create-modal">
+                    <div class="modal-contents">
+                        <div class="create-header"><h3>Create Character</h3></div>
+
+                        <form class="playerdata" id="playerdata">
+                            <input type="text" class="text" id="firstname" placeholder="First Name" required>
+                            <input type="text" class="text" id="lastname" placeholder="Last Name" required>
+                            <input type="date" class="text" id="dob" required>
+                            <select id="sex" name="sex" required>
+                                <option value="Male">Male</option>
+                                <option value="Female">Female</option>
+                            </select>
+                            <input class="accept-create btn-accept" type="submit" value="Create">
+                            <input class="cancel-button btn-cancel" type="button" value="Cancel">
+                        </form>
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <script src="nui://game/ui/jquery.js" type="text/javascript"></script>
+        <script type="text/javascript" src="./app.js"></script>
+    </body>
+</html>
