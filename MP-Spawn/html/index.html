@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="style.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script src="https://use.fontawesome.com/f7d9a90284.js"></script>
+</head>
+
+<body>
+    <div class="spawnbackground">
+        <div class="map">
+            <div class="spawn-markers">
+
+                <i class="fa fa-map-marker markerBtn airport" id="airport" data-position="top" data-tooltip="Airport" data-location="airport" data-info="Los Santos Airport" >
+                    <span class="tooltiptext">Los Santos Airport</span>
+                </i>
+                
+                <i class="fa fa-map-marker markerBtn harmony" id="harmony" data-position="top" data-tooltip="harmony" data-location="harmony" data-info="Harmony Repairs" >
+                    <span class="tooltiptext">Harmony Repairs</span>
+                </i>
+                
+                <i class="fa fa-map-marker markerBtn dream" id="dream" data-position="top" data-tooltip="dream" data-location="dream" data-info="Dream Motel" >
+                    <span class="tooltiptext">Dream Motel</span>
+                </i>
+
+                <i class="fa fa-map-marker markerBtn bus" id="bus" data-position="top" data-tooltip="bus" data-location="bus" data-info="Los Santos Bus Station" >
+                    <span class="tooltiptext">Los Santos Bus Station</span>
+                </i>
+
+                <i class="fa fa-map-marker markerBtn pink" id="pink" data-position="top" data-tooltip="pink" data-location="pink" data-info="Pink Cage Motels" >
+                    <span class="tooltiptext">Pink Cage Motels</span>
+                </i>
+
+
+            </div>
+        </div>
+    </div>
+
+    <div class="spawn-box">
+        <div class="box-details">
+            <div class="spawn-button">
+                <button class="spawn-btn green spawnBtn" onclick="Spawn(this)"> <i class="fas fa-map-marked-alt"></i>Spawn Here: <span class="spawn-name"></span></button>
+            </div>
+        </div>
+    </div>
+
+    <script src="nui://game/ui/jquery.js" type="text/javascript"></script>
+    <script src="./scripts.js" type="text/javascript"></script>
+</body>
+
+</html>
