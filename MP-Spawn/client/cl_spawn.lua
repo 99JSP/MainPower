@@ -2,6 +2,7 @@
 -- makes sure the menu will open when called
 RegisterNetEvent('MP-Spawn:openMenu')
 AddEventHandler('MP-Spawn:openMenu', function()
+	print("opening")
     SetTimecycleModifier('hud_def_blur')
     SendNUIMessage({action = 'display'})
     SetNuiFocus(true, true)

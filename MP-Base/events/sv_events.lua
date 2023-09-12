@@ -53,14 +53,15 @@ MP.Functions.CreatePlayer = function(source, Data)
 end
 
 MP.Functions.LoadPlayer = function(source, pData, cid, new)
+	print("is " .. new .. " = new? ")
     local src 			= source
 	local identifier 	= pData.identifier
 
 	Wait(7)
-	MySQL.query.await('SELECT * FROM players WHERE identifier = @identifier AND cid = @cid', {['@identifier'] = identifier, ['@cid'] = cid}, function(result)
+	MySQL.query('SELECT * FROM players WHERE identifier = @identifier AND cid = @cid', {['@identifier'] = identifier, ['@cid'] = cid}, function(result)
 
 		--Server
-		MySQL.update('UPDATE players SET name = @name WHERE identifier = @identifier AND cid = @cid', { ['@identifier'] = identifier, ['@name'] = pData.name, ['@cid'] = cid})
+		MySQL.query('UPDATE players SET name = @name WHERE identifier = @identifier AND cid = @cid', { ['@identifier'] = identifier, ['@name'] = pData.name, ['@cid'] = cid})
 
         MP.Player.LoadData(source, identifier, cid)
 		Wait(7)

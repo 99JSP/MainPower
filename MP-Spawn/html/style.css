@@ -1,1009 +1,988 @@
-*{
-    font-family:  'Oswald';
+* {
+	font-family: "Oswald";
 }
 
-@import url('https://fonts.googleapis.com/css?family=Oswald');
+@import url("https://fonts.googleapis.com/css?family=Oswald");
 
 .spawnbackground {
-    width: 100%;
-    height: 100%;
-    display: none;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    background-color: black;
-    position: fixed;
+	width: 100%;
+	height: 100%;
+	display: none;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	background-color: black;
+	position: fixed;
 }
 
 .map {
-    width: 100%;
-    height: 100%;
-    background:url(./spawnmenu.png);
-    background-size: cover;
+	width: 100%;
+	height: 100%;
+	background: url(./spawnmenu.png);
+	background-size: cover;
 }
 
-.spawn-markers{
-    width:100%;
-    height: 100%;
-    position: relative;
+.spawn-markers {
+	width: 100%;
+	height: 100%;
+	position: relative;
 }
-
 
 @keyframes lightitup {
-    0%   {opacity: 0%; transform:scale(0.9);}
-    25%  {opacity: 25%; transform:scale(1.1);}
-    50%  {opacity: 50%; transform:scale(1.2);}
-    75%  {opacity: 75%; transform:scale(1.3);}
-    100% {opacity: 100%; transform:scale(1.5);}
+	0% {
+		opacity: 0%;
+		transform: scale(0.9);
+	}
+	25% {
+		opacity: 25%;
+		transform: scale(1.1);
+	}
+	50% {
+		opacity: 50%;
+		transform: scale(1.2);
+	}
+	75% {
+		opacity: 75%;
+		transform: scale(1.3);
+	}
+	100% {
+		opacity: 100%;
+		transform: scale(1.5);
+	}
 }
- 
-.markerBtn{
-    color:rgb(5, 218, 255);
-    animation-name: lightitup;
-    animation-duration: 1.25s;
-    transform:scale(1.5);
+
+.markerBtn {
+	color: rgb(5, 218, 255);
+	animation-name: lightitup;
+	animation-duration: 1.25s;
+	transform: scale(1.5);
 }
 
 .markerBtn:active {
-    color: red;
+	color: red;
 }
 
 .markerBtn.bus {
-    position: fixed;
-    top: 49.5%;
-    left: 63.5%;
+	position: fixed;
+	top: 49.5%;
+	left: 63.5%;
 }
 .markerBtn.pink {
-    position: fixed;
-    top:49.5%;
-    left:60.5%;
+	position: fixed;
+	top: 49.5%;
+	left: 60.5%;
 }
 .markerBtn.airport {
-    position: fixed;
-    top:62.5%;
-    left:72%;
+	position: fixed;
+	top: 62.5%;
+	left: 72%;
 }
 .markerBtn.harmony {
-    position: fixed;
-    top:45%;
-    left:47.5%;
+	position: fixed;
+	top: 45%;
+	left: 47.5%;
 }
 .markerBtn.dream {
-    position: fixed;
-    top:55.2%;
-    left:31.5%;
+	position: fixed;
+	top: 55.2%;
+	left: 31.5%;
 }
 
 .tooltiptext {
-    visibility: hidden;
-    width: 120px;
-    background-color: rgba(0, 0, 0, 0.8);
-    font-size: 8px;
-    color: white;
-    text-align: center;
-    padding: 5px 0;
-    border-radius: 6px;
-    position: fixed;
-    z-index: 1;
+	visibility: hidden;
+	width: 120px;
+	background-color: rgba(0, 0, 0, 0.8);
+	font-size: 8px;
+	color: white;
+	text-align: center;
+	padding: 5px 0;
+	border-radius: 6px;
+	position: fixed;
+	z-index: 1;
 }
 
 .spawn-box {
-    position: fixed;
-    top: 90%;
-    left: 10%;
-    transform: translate(-50%, -50%);
-    width: fit-content;
-    padding-right: 5px;
-    padding-left: 5px;
-    height: 80px;
-    border-radius: 5px;
-    text-align: center;
-    display: none;
+	position: fixed;
+	top: 90%;
+	left: 10%;
+	transform: translate(-50%, -50%);
+	width: fit-content;
+	padding-right: 5px;
+	padding-left: 5px;
+	height: 80px;
+	border-radius: 5px;
+	text-align: center;
+	display: none;
 }
 
 .spawnBtn {
-    border: none;
-    border-radius: 10px;
+	border: none;
+	border-radius: 10px;
 }
-
 
 .box-details {
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: center;
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-start;
+	align-items: center;
 }
 
-.spawnbackground.disabled{
-    pointer-events: none;
-    filter:sepia(70%);
+.spawnbackground.disabled {
+	pointer-events: none;
+	filter: sepia(70%);
 }
 
-.spawn-box span{
-    font-family: 'Oswald';
-    font-weight: 600;
-    font-size: 20px;
-    color: white;
+.spawn-box span {
+	font-family: "Oswald";
+	font-weight: 600;
+	font-size: 20px;
+	color: white;
 }
 
-.spawn-box img{
-    margin-top: 10px;
-    width: 65%;
-    height: 65%;
-    border-radius: 4px;
+.spawn-box img {
+	margin-top: 10px;
+	width: 65%;
+	height: 65%;
+	border-radius: 4px;
 }
 
-.markerBtn:hover{
-    cursor: pointer;
-    transform:scale(2);
-    color:rgb(214, 200, 12);
+.markerBtn:hover {
+	cursor: pointer;
+	transform: scale(2);
+	color: rgb(214, 200, 12);
 }
 
-
-.markerBtn:hover .tooltiptext{
-    visibility: visible;
+.markerBtn:hover .tooltiptext {
+	visibility: visible;
 }
 
 .airport-active {
-    color: rgb(103, 214, 12);
-    transform: scale(2);
+	color: rgb(103, 214, 12);
+	transform: scale(2);
 }
 .pink-active {
-    color: rgb(103, 214, 12);
-    transform: scale(2);
+	color: rgb(103, 214, 12);
+	transform: scale(2);
 }
 .harmony-active {
-    color: rgb(103, 214, 12);
-    transform: scale(2);
+	color: rgb(103, 214, 12);
+	transform: scale(2);
 }
 .bus-active {
-    color: rgb(103, 214, 12);
-    transform: scale(2);
+	color: rgb(103, 214, 12);
+	transform: scale(2);
 }
 .dream-active {
-    color: rgb(103, 214, 12);
-    transform: scale(2);
+	color: rgb(103, 214, 12);
+	transform: scale(2);
 }
 
 .spawn-btn {
-    background-color: rgb(84, 172, 11);
-    color: white;
-    font-family: 'Oswald';
-    font-weight: 600;
-    font-size: 20px;
-    padding: 0.5vw;
-    outline: none;
+	background-color: rgb(84, 172, 11);
+	color: white;
+	font-family: "Oswald";
+	font-weight: 600;
+	font-size: 20px;
+	padding: 0.5vw;
+	outline: none;
 }
 
-.spawn-buttons{
-    display: flex;
-    flex-direction: row;
+.spawn-buttons {
+	display: flex;
+	flex-direction: row;
 }
 
-.spawn-buttons button{
-    margin-left:5px;
-    transition:.3s ease;
+.spawn-buttons button {
+	margin-left: 5px;
+	transition: 0.3s ease;
 }
 
-.spawn-buttons button.red{
-    background:red !important;
+.spawn-buttons button.red {
+	background: red !important;
 }
 
-.spawn-buttons button:hover{
-    cursor: pointer;
+.spawn-buttons button:hover {
+	cursor: pointer;
 }
 
 @media (max-width: 2561px) {
-     
-    .markerBtn {
-        color: rgb(5, 215, 255);
-        animation-name: high-light;
-        animation-duration: 1.25s;
-        transform: scale(1.5);
-    }
-    
-    .markerBtn:active {
-        color: red;
-    }
-    
-    .markerBtn.bus {
-        position: fixed;
-        top: 49%;
-        left: 63.2%;
-    }
-    .markerBtn.pink{
-        position: fixed;
-        top:49.7%;
-        left:60.7%;
-    }
-    .markerBtn.airport{
-        position: fixed;
-        top:62.5%;
-        left:72%;
-    }
-    .markerBtn.harmony{
-        position: fixed;
-        top:44%;
-        left:47.7%;
-    }
-    .markerBtn.dream{
-        position: fixed;
-        top:54.4%;
-        left:31.2%;
-    }
+	.markerBtn {
+		color: rgb(5, 215, 255);
+		animation-name: high-light;
+		animation-duration: 1.25s;
+		transform: scale(1.5);
+	}
 
+	.markerBtn:active {
+		color: red;
+	}
 
-    .tooltiptext {
-        visibility: hidden;
-        width: 120px;
-        background-color: rgba(0, 0, 0, 0.8);
-        font-size: 8px;
-        color: white;
-        text-align: center;
-        padding: 5px 0;
-        border-radius: 6px;
-        position: fixed;
-        z-index: 1;
-    }
-    
-    .spawn-box {
-        position: fixed;
-        top: 90%;
-        left: 10%;
-        transform: translate(-50%, -50%);
-        width: fit-content;
-        padding-right: 5px;
-        padding-left: 5px;
-        height: 80px;
-        border-radius: 5px;
-        text-align: center;
-        display: none;
-    }
-    
-    .spawnBtn {
-        border: none;
-        border-radius: 10px;
-    }
-    
-    
-    .box-details {
-        display: flex;
-        flex-direction: column;
-        justify-content: flex-start;
-        align-items: center;
-    }
-    
-    .spawnbackground.disabled{
-        pointer-events: none;
-        filter:sepia(70%);
-    }
-    
-    .spawn-box span{
-        font-family: 'Oswald';
-        font-weight: 600;
-        font-size: 20px;
-        color: white;
-    }
-    
-    .spawn-box img{
-        margin-top: 10px;
-        width: 65%;
-        height: 65%;
-        border-radius: 4px;
-    }
-    
-    .markerBtn:hover{
-        cursor: pointer;
-        transform:scale(2);
-        color:rgb(214, 200, 12);
-    }
-    
-    
-    .markerBtn:hover .tooltiptext{
-        visibility: visible;
-    }
-    
-    .airport-active {
-        color: rgb(103, 214, 12);
-        transform: scale(2);
-    }
-    .pink-active {
-        color: rgb(103, 214, 12);
-        transform: scale(2);
-    }
-    .harmony-active {
-        color: rgb(103, 214, 12);
-        transform: scale(2);
-    }
-    .bus-active {
-        color: rgb(103, 214, 12);
-        transform: scale(2);
-    }
-    .dream-active {
-        color: rgb(103, 214, 12);
-        transform: scale(2);
-    }
-    
-    .spawn-btn {
-        background-color: rgb(84, 172, 11);
-        color: white;
-        font-family: 'Oswald';
-        font-weight: 600;
-        font-size: 20px;
-        padding: 0.5vw;
-        outline: none;
-    }
-    
-    .spawn-buttons{
-        display: flex;
-        flex-direction: row;
-    }
-    
-    .spawn-buttons button{
-        margin-left:5px;
-        transition:.3s ease;
-    }
-    
-    .spawn-buttons button.red{
-        background:red !important;
-    }
-    
-    .spawn-buttons button:hover{
-        cursor: pointer;
-    }
+	.markerBtn.bus {
+		position: fixed;
+		top: 49%;
+		left: 63.2%;
+	}
+	.markerBtn.pink {
+		position: fixed;
+		top: 49.7%;
+		left: 60.7%;
+	}
+	.markerBtn.airport {
+		position: fixed;
+		top: 62.5%;
+		left: 72%;
+	}
+	.markerBtn.harmony {
+		position: fixed;
+		top: 44%;
+		left: 47.7%;
+	}
+	.markerBtn.dream {
+		position: fixed;
+		top: 54.4%;
+		left: 31.2%;
+	}
 
+	.tooltiptext {
+		visibility: hidden;
+		width: 120px;
+		background-color: rgba(0, 0, 0, 0.8);
+		font-size: 8px;
+		color: white;
+		text-align: center;
+		padding: 5px 0;
+		border-radius: 6px;
+		position: fixed;
+		z-index: 1;
+	}
+
+	.spawn-box {
+		position: fixed;
+		top: 90%;
+		left: 10%;
+		transform: translate(-50%, -50%);
+		width: fit-content;
+		padding-right: 5px;
+		padding-left: 5px;
+		height: 80px;
+		border-radius: 5px;
+		text-align: center;
+		display: none;
+	}
+
+	.spawnBtn {
+		border: none;
+		border-radius: 10px;
+	}
+
+	.box-details {
+		display: flex;
+		flex-direction: column;
+		justify-content: flex-start;
+		align-items: center;
+	}
+
+	.spawnbackground.disabled {
+		pointer-events: none;
+		filter: sepia(70%);
+	}
+
+	.spawn-box span {
+		font-family: "Oswald";
+		font-weight: 600;
+		font-size: 20px;
+		color: white;
+	}
+
+	.spawn-box img {
+		margin-top: 10px;
+		width: 65%;
+		height: 65%;
+		border-radius: 4px;
+	}
+
+	.markerBtn:hover {
+		cursor: pointer;
+		transform: scale(2);
+		color: rgb(214, 200, 12);
+	}
+
+	.markerBtn:hover .tooltiptext {
+		visibility: visible;
+	}
+
+	.airport-active {
+		color: rgb(103, 214, 12);
+		transform: scale(2);
+	}
+	.pink-active {
+		color: rgb(103, 214, 12);
+		transform: scale(2);
+	}
+	.harmony-active {
+		color: rgb(103, 214, 12);
+		transform: scale(2);
+	}
+	.bus-active {
+		color: rgb(103, 214, 12);
+		transform: scale(2);
+	}
+	.dream-active {
+		color: rgb(103, 214, 12);
+		transform: scale(2);
+	}
+
+	.spawn-btn {
+		background-color: rgb(84, 172, 11);
+		color: white;
+		font-family: "Oswald";
+		font-weight: 600;
+		font-size: 20px;
+		padding: 0.5vw;
+		outline: none;
+	}
+
+	.spawn-buttons {
+		display: flex;
+		flex-direction: row;
+	}
+
+	.spawn-buttons button {
+		margin-left: 5px;
+		transition: 0.3s ease;
+	}
+
+	.spawn-buttons button.red {
+		background: red !important;
+	}
+
+	.spawn-buttons button:hover {
+		cursor: pointer;
+	}
 }
 
 @media (max-width: 1921px) {
+	.markerBtn:active {
+		color: red;
+	}
 
-    .markerBtn:active {
-        color: red;
-    }
+	.airport-active {
+		color: rgb(103, 214, 12);
+		transform: scale(2);
+	}
+	.pink-active {
+		color: rgb(103, 214, 12);
+		transform: scale(2);
+	}
+	.harmony-active {
+		color: rgb(103, 214, 12);
+		transform: scale(2);
+	}
+	.bus-active {
+		color: rgb(103, 214, 12);
+		transform: scale(2);
+	}
+	.dream-active {
+		color: rgb(103, 214, 12);
+		transform: scale(2);
+	}
 
-    .airport-active {
-        color: rgb(103, 214, 12);
-        transform: scale(2);
-    }
-    .pink-active {
-        color: rgb(103, 214, 12);
-        transform: scale(2);
-    }
-    .harmony-active {
-        color: rgb(103, 214, 12);
-        transform: scale(2);
-    }
-    .bus-active {
-        color: rgb(103, 214, 12);
-        transform: scale(2);
-    }
-    .dream-active {
-        color: rgb(103, 214, 12);
-        transform: scale(2);
-    }
+	.map {
+		width: 1920px;
+		height: 1080px;
+		background: url(./spawnmenu.png);
+		background-size: cover;
+		overflow: none;
+	}
 
-    .map {
-        width: 1920px;
-        height: 1080px;
-        background:url(./spawnmenu.png);
-        background-size: cover;
-        overflow: none;
-    }
-     
-    .markerBtn {
-        color: rgb(5, 215, 255);
-        animation-name: high-light;
-        animation-duration: 1.25s;
-        transform: scale(1.5);
-    }
-    
-    .markerBtn:active {
-        color: red;
-    }
-    
-    .markerBtn.bus {
-        position: fixed;
-        top: 49%;
-        left: 63.5%;
-    }
-    .markerBtn.pink{
-        position: fixed;
-        top:49.5%;
-        left:60.5%;
-    }
-    .markerBtn.airport{
-        position: fixed;
-        top:62.5%;
-        left:72%;
-    }
-    .markerBtn.harmony{
-        position: fixed;
-        top:45%;
-        left:47.5%;
-    }
-    .markerBtn.dream{
-        position: fixed;
-        top:55.2%;
-        left:31.5%;
-    }
+	.markerBtn {
+		color: rgb(5, 215, 255);
+		animation-name: high-light;
+		animation-duration: 1.25s;
+		transform: scale(1.5);
+	}
 
+	.markerBtn:active {
+		color: red;
+	}
 
+	.markerBtn.bus {
+		position: fixed;
+		top: 49%;
+		left: 63.5%;
+	}
+	.markerBtn.pink {
+		position: fixed;
+		top: 49.5%;
+		left: 60.5%;
+	}
+	.markerBtn.airport {
+		position: fixed;
+		top: 62.5%;
+		left: 72%;
+	}
+	.markerBtn.harmony {
+		position: fixed;
+		top: 45%;
+		left: 47.5%;
+	}
+	.markerBtn.dream {
+		position: fixed;
+		top: 55.2%;
+		left: 31.5%;
+	}
 
-    .tooltiptext {
-        visibility: hidden;
-        width: 120px;
-        background-color: rgba(0, 0, 0, 0.8);
-        font-size: 8px;
-        color: white;
-        text-align: center;
-        padding: 5px 0;
-        border-radius: 6px;
-        position: fixed;
-        z-index: 1;
-    }
-    
-    .spawn-box {
-        position: fixed;
-        top: 90%;
-        left: 10%;
-        transform: translate(-50%, -50%);
-        width: fit-content;
-        padding-right: 5px;
-        padding-left: 5px;
-        height: 80px;
-        border-radius: 5px;
-        text-align: center;
-        display: none;
-    }
-    
-    .spawnBtn {
-        border: none;
-        border-radius: 10px;
-    }
-    
-    
-    .box-details {
-        display: flex;
-        flex-direction: column;
-        justify-content: flex-start;
-        align-items: center;
-    }
-    
-    .spawnbackground.disabled{
-        pointer-events: none;
-        filter:sepia(70%);
-    }
-    
-    .spawn-box span{
-        font-family: 'Oswald';
-        font-weight: 600;
-        font-size: 20px;
-        color: white;
-    }
-    
-    .spawn-box img{
-        margin-top: 10px;
-        width: 65%;
-        height: 65%;
-        border-radius: 4px;
-    }
-    
-    .markerBtn:hover{
-        cursor: pointer;
-        transform:scale(2);
-        color:rgb(214, 200, 12);
-    }
-    
-    
-    .markerBtn:hover .tooltiptext{
-        visibility: visible;
-    }
-    
-    .airport-active {
-        color: rgb(103, 214, 12);
-        transform: scale(2);
-    }
-    .pink-active {
-        color: rgb(103, 214, 12);
-        transform: scale(2);
-    }
-    .harmony-active {
-        color: rgb(103, 214, 12);
-        transform: scale(2);
-    }
-    .bus-active {
-        color: rgb(103, 214, 12);
-        transform: scale(2);
-    }
-    .dream-active {
-        color: rgb(103, 214, 12);
-        transform: scale(2);
-    }
-    
-    .spawn-btn {
-        background-color: rgb(84, 172, 11);
-        color: white;
-        font-family: 'Oswald';
-        font-weight: 600;
-        font-size: 20px;
-        padding: 0.5vw;
-        outline: none;
-    }
-    
-    .spawn-buttons{
-        display: flex;
-        flex-direction: row;
-    }
-    
-    .spawn-buttons button{
-        margin-left:5px;
-        transition:.3s ease;
-    }
-    
-    .spawn-buttons button.red{
-        background:red !important;
-    }
-    
-    .spawn-buttons button:hover{
-        cursor: pointer;
-    }
+	.tooltiptext {
+		visibility: hidden;
+		width: 120px;
+		background-color: rgba(0, 0, 0, 0.8);
+		font-size: 8px;
+		color: white;
+		text-align: center;
+		padding: 5px 0;
+		border-radius: 6px;
+		position: fixed;
+		z-index: 1;
+	}
 
+	.spawn-box {
+		position: fixed;
+		top: 90%;
+		left: 10%;
+		transform: translate(-50%, -50%);
+		width: fit-content;
+		padding-right: 5px;
+		padding-left: 5px;
+		height: 80px;
+		border-radius: 5px;
+		text-align: center;
+		display: none;
+	}
 
+	.spawnBtn {
+		border: none;
+		border-radius: 10px;
+	}
+
+	.box-details {
+		display: flex;
+		flex-direction: column;
+		justify-content: flex-start;
+		align-items: center;
+	}
+
+	.spawnbackground.disabled {
+		pointer-events: none;
+		filter: sepia(70%);
+	}
+
+	.spawn-box span {
+		font-family: "Oswald";
+		font-weight: 600;
+		font-size: 20px;
+		color: white;
+	}
+
+	.spawn-box img {
+		margin-top: 10px;
+		width: 65%;
+		height: 65%;
+		border-radius: 4px;
+	}
+
+	.markerBtn:hover {
+		cursor: pointer;
+		transform: scale(2);
+		color: rgb(214, 200, 12);
+	}
+
+	.markerBtn:hover .tooltiptext {
+		visibility: visible;
+	}
+
+	.airport-active {
+		color: rgb(103, 214, 12);
+		transform: scale(2);
+	}
+	.pink-active {
+		color: rgb(103, 214, 12);
+		transform: scale(2);
+	}
+	.harmony-active {
+		color: rgb(103, 214, 12);
+		transform: scale(2);
+	}
+	.bus-active {
+		color: rgb(103, 214, 12);
+		transform: scale(2);
+	}
+	.dream-active {
+		color: rgb(103, 214, 12);
+		transform: scale(2);
+	}
+
+	.spawn-btn {
+		background-color: rgb(84, 172, 11);
+		color: white;
+		font-family: "Oswald";
+		font-weight: 600;
+		font-size: 20px;
+		padding: 0.5vw;
+		outline: none;
+	}
+
+	.spawn-buttons {
+		display: flex;
+		flex-direction: row;
+	}
+
+	.spawn-buttons button {
+		margin-left: 5px;
+		transition: 0.3s ease;
+	}
+
+	.spawn-buttons button.red {
+		background: red !important;
+	}
+
+	.spawn-buttons button:hover {
+		cursor: pointer;
+	}
 }
 
 @media (max-width: 1681px) {
+	.markerBtn:active {
+		color: red;
+	}
 
+	.airport-active {
+		color: rgb(103, 214, 12);
+		transform: scale(2);
+	}
+	.pink-active {
+		color: rgb(103, 214, 12);
+		transform: scale(2);
+	}
+	.harmony-active {
+		color: rgb(103, 214, 12);
+		transform: scale(2);
+	}
+	.bus-active {
+		color: rgb(103, 214, 12);
+		transform: scale(2);
+	}
+	.dream-active {
+		color: rgb(103, 214, 12);
+		transform: scale(2);
+	}
 
-    .markerBtn:active {
-        color: red;
-    }
+	.map {
+		width: 1680px;
+		height: 1050px;
+		background: url(./spawnmenu.png);
+		background-size: contain;
+		transform: scale(1.25);
+		overflow: none;
+	}
 
-    .airport-active {
-        color: rgb(103, 214, 12);
-        transform: scale(2);
-    }
-    .pink-active {
-        color: rgb(103, 214, 12);
-        transform: scale(2);
-    }
-    .harmony-active {
-        color: rgb(103, 214, 12);
-        transform: scale(2);
-    }
-    .bus-active {
-        color: rgb(103, 214, 12);
-        transform: scale(2);
-    }
-    .dream-active {
-        color: rgb(103, 214, 12);
-        transform: scale(2);
-    }
+	.markerBtn {
+		color: rgb(5, 215, 255);
+		animation-name: high-light;
+		animation-duration: 1.25s;
+		transform: scale(1.5);
+	}
 
-    .map {
-        width: 1680px;
-        height: 1050px;
-        background:url(./spawnmenu.png);
-        background-size: contain;
-        transform: scale(1.25);
-        overflow: none;
-    }
-     
-    .markerBtn {
-        color: rgb(5, 215, 255);
-        animation-name: high-light;
-        animation-duration: 1.25s;
-        transform: scale(1.5);
-    }
-    
-    .markerBtn:active {
-        color: red;
-    }
-    
-    .markerBtn.bus {
-        position: fixed;
-        top: 43.5%;
-        left: 63.2%;
-    }
-    .markerBtn.pink{
-        position: fixed;
-        top:43.5%;
-        left:60.5%;
-    }
-    .markerBtn.airport{
-        position: fixed;
-        top:55.5%;
-        left:72%;
-    }
-    .markerBtn.harmony{
-        position: fixed;
-        top:40%;
-        left:47.5%;
-    }
-    .markerBtn.dream{
-        position: fixed;
-        top:49.2%;
-        left:31.5%;
-    }
+	.markerBtn:active {
+		color: red;
+	}
 
+	.markerBtn.bus {
+		position: fixed;
+		top: 43.5%;
+		left: 63.2%;
+	}
+	.markerBtn.pink {
+		position: fixed;
+		top: 43.5%;
+		left: 60.5%;
+	}
+	.markerBtn.airport {
+		position: fixed;
+		top: 55.5%;
+		left: 72%;
+	}
+	.markerBtn.harmony {
+		position: fixed;
+		top: 40%;
+		left: 47.5%;
+	}
+	.markerBtn.dream {
+		position: fixed;
+		top: 49.2%;
+		left: 31.5%;
+	}
 
+	.tooltiptext {
+		visibility: hidden;
+		width: 120px;
+		background-color: rgba(0, 0, 0, 0.8);
+		font-size: 8px;
+		color: white;
+		text-align: center;
+		padding: 5px 0;
+		border-radius: 6px;
+		position: fixed;
+		z-index: 1;
+	}
 
-    .tooltiptext {
-        visibility: hidden;
-        width: 120px;
-        background-color: rgba(0, 0, 0, 0.8);
-        font-size: 8px;
-        color: white;
-        text-align: center;
-        padding: 5px 0;
-        border-radius: 6px;
-        position: fixed;
-        z-index: 1;
-    }
-    
-    .spawn-box {
-        position: fixed;
-        top: 90%;
-        left: 10%;
-        transform: translate(-50%, -50%);
-        width: fit-content;
-        padding-right: 5px;
-        padding-left: 5px;
-        height: 80px;
-        border-radius: 5px;
-        text-align: center;
-        display: none;
-    }
-    
-    .spawnBtn {
-        border: none;
-        border-radius: 10px;
-    }
-    
-    
-    .box-details {
-        display: flex;
-        flex-direction: column;
-        justify-content: flex-start;
-        align-items: center;
-    }
-    
-    .spawnbackground.disabled{
-        pointer-events: none;
-        filter:sepia(70%);
-    }
-    
-    .spawn-box span{
-        font-family: 'Oswald';
-        font-weight: 600;
-        font-size: 20px;
-        color: white;
-    }
-    
-    .spawn-box img{
-        margin-top: 10px;
-        width: 65%;
-        height: 65%;
-        border-radius: 4px;
-    }
-    
-    .markerBtn:hover{
-        cursor: pointer;
-        transform:scale(2);
-        color:rgb(214, 200, 12);
-    }
-    
-    
-    .markerBtn:hover .tooltiptext{
-        visibility: visible;
-    }
-    
-    .airport-active {
-        color: rgb(103, 214, 12);
-        transform: scale(2);
-    }
-    .pink-active {
-        color: rgb(103, 214, 12);
-        transform: scale(2);
-    }
-    .harmony-active {
-        color: rgb(103, 214, 12);
-        transform: scale(2);
-    }
-    .bus-active {
-        color: rgb(103, 214, 12);
-        transform: scale(2);
-    }
-    .dream-active {
-        color: rgb(103, 214, 12);
-        transform: scale(2);
-    }
-    
-    .spawn-btn {
-        background-color: rgb(84, 172, 11);
-        color: white;
-        font-family: 'Oswald';
-        font-weight: 600;
-        font-size: 20px;
-        padding: 0.5vw;
-        outline: none;
-    }
-    
-    .spawn-buttons{
-        display: flex;
-        flex-direction: row;
-    }
-    
-    .spawn-buttons button{
-        margin-left:5px;
-        transition:.3s ease;
-    }
-    
-    .spawn-buttons button.red{
-        background:red !important;
-    }
-    
-    .spawn-buttons button:hover{
-        cursor: pointer;
-    }
+	.spawn-box {
+		position: fixed;
+		top: 90%;
+		left: 10%;
+		transform: translate(-50%, -50%);
+		width: fit-content;
+		padding-right: 5px;
+		padding-left: 5px;
+		height: 80px;
+		border-radius: 5px;
+		text-align: center;
+		display: none;
+	}
 
+	.spawnBtn {
+		border: none;
+		border-radius: 10px;
+	}
+
+	.box-details {
+		display: flex;
+		flex-direction: column;
+		justify-content: flex-start;
+		align-items: center;
+	}
+
+	.spawnbackground.disabled {
+		pointer-events: none;
+		filter: sepia(70%);
+	}
+
+	.spawn-box span {
+		font-family: "Oswald";
+		font-weight: 600;
+		font-size: 20px;
+		color: white;
+	}
+
+	.spawn-box img {
+		margin-top: 10px;
+		width: 65%;
+		height: 65%;
+		border-radius: 4px;
+	}
+
+	.markerBtn:hover {
+		cursor: pointer;
+		transform: scale(2);
+		color: rgb(214, 200, 12);
+	}
+
+	.markerBtn:hover .tooltiptext {
+		visibility: visible;
+	}
+
+	.airport-active {
+		color: rgb(103, 214, 12);
+		transform: scale(2);
+	}
+	.pink-active {
+		color: rgb(103, 214, 12);
+		transform: scale(2);
+	}
+	.harmony-active {
+		color: rgb(103, 214, 12);
+		transform: scale(2);
+	}
+	.bus-active {
+		color: rgb(103, 214, 12);
+		transform: scale(2);
+	}
+	.dream-active {
+		color: rgb(103, 214, 12);
+		transform: scale(2);
+	}
+
+	.spawn-btn {
+		background-color: rgb(84, 172, 11);
+		color: white;
+		font-family: "Oswald";
+		font-weight: 600;
+		font-size: 20px;
+		padding: 0.5vw;
+		outline: none;
+	}
+
+	.spawn-buttons {
+		display: flex;
+		flex-direction: row;
+	}
+
+	.spawn-buttons button {
+		margin-left: 5px;
+		transition: 0.3s ease;
+	}
+
+	.spawn-buttons button.red {
+		background: red !important;
+	}
+
+	.spawn-buttons button:hover {
+		cursor: pointer;
+	}
 }
 
 @media (max-width: 1601px) {
+	.markerBtn:active {
+		color: red;
+	}
 
+	.airport-active {
+		color: rgb(103, 214, 12);
+		transform: scale(2);
+	}
+	.pink-active {
+		color: rgb(103, 214, 12);
+		transform: scale(2);
+	}
+	.harmony-active {
+		color: rgb(103, 214, 12);
+		transform: scale(2);
+	}
+	.bus-active {
+		color: rgb(103, 214, 12);
+		transform: scale(2);
+	}
+	.dream-active {
+		color: rgb(103, 214, 12);
+		transform: scale(2);
+	}
 
-    .markerBtn:active {
-        color: red;
-    }
+	.map {
+		width: 1600px;
+		height: 900px;
+		background: url(./spawnmenu.png);
+		background-size: cover;
+		overflow: none;
+	}
 
-    .airport-active {
-        color: rgb(103, 214, 12);
-        transform: scale(2);
-    }
-    .pink-active {
-        color: rgb(103, 214, 12);
-        transform: scale(2);
-    }
-    .harmony-active {
-        color: rgb(103, 214, 12);
-        transform: scale(2);
-    }
-    .bus-active {
-        color: rgb(103, 214, 12);
-        transform: scale(2);
-    }
-    .dream-active {
-        color: rgb(103, 214, 12);
-        transform: scale(2);
-    }
+	.markerBtn {
+		color: rgb(5, 215, 255);
+		animation-name: high-light;
+		animation-duration: 1.25s;
+		transform: scale(1.5);
+	}
 
-    .map {
-        width: 1600px;
-        height: 900px;
-        background:url(./spawnmenu.png);
-        background-size: cover;
-        overflow: none;
-    }
-     
-    .markerBtn {
-        color: rgb(5, 215, 255);
-        animation-name: high-light;
-        animation-duration: 1.25s;
-        transform: scale(1.5);
-    }
-    
-    
-    .markerBtn.bus {
-        position: fixed;
-        top: 49.5%;
-        left: 63.5%;
-    }
-    .markerBtn.pink{
-        position: fixed;
-        top:49.5%;
-        left:60.5%;
-    }
-    .markerBtn.airport{
-        position: fixed;
-        top:62.5%;
-        left:72%;
-    }
-    .markerBtn.harmony{
-        position: fixed;
-        top:45%;
-        left:47.5%;
-    }
-    .markerBtn.dream{
-        position: fixed;
-        top:55.2%;
-        left:31.5%;
-    }
+	.markerBtn.bus {
+		position: fixed;
+		top: 49.5%;
+		left: 63.5%;
+	}
+	.markerBtn.pink {
+		position: fixed;
+		top: 49.5%;
+		left: 60.5%;
+	}
+	.markerBtn.airport {
+		position: fixed;
+		top: 62.5%;
+		left: 72%;
+	}
+	.markerBtn.harmony {
+		position: fixed;
+		top: 45%;
+		left: 47.5%;
+	}
+	.markerBtn.dream {
+		position: fixed;
+		top: 55.2%;
+		left: 31.5%;
+	}
 
+	.spawn-box span {
+		font-family: "Oswald";
+		font-weight: 600;
+		font-size: 10px;
+		color: white;
+	}
 
-
-    .spawn-box span{
-        font-family: 'Oswald';
-        font-weight: 600;
-        font-size: 10px;
-        color: white;
-    }
-
-    .spawn-btn {
-        background-color: rgb(84, 172, 11);
-        color: white;
-        font-family: 'Oswald';
-        font-weight: 600;
-        font-size: 10px;
-        padding: 0.5vw;
-        outline: none;
-    }
-
-
+	.spawn-btn {
+		background-color: rgb(84, 172, 11);
+		color: white;
+		font-family: "Oswald";
+		font-weight: 600;
+		font-size: 10px;
+		padding: 0.5vw;
+		outline: none;
+	}
 }
 
 @media (max-width: 1367px) {
-    .map {
-        width: 1366px;
-        height: 768px;
-        background:url(./spawnmenu.png);
-        background-size: contain;
-        transform: scale(1.25);
-        overflow: none;
-    }
-     
-    .markerBtn {
-        color: rgb(5, 215, 255);
-        animation-name: high-light;
-        animation-duration: 1.25s;
-        transform: scale(1.5);
-    }
-    
+	.map {
+		width: 1366px;
+		height: 768px;
+		background: url(./spawnmenu.png);
+		background-size: contain;
+		transform: scale(1.25);
+		overflow: none;
+	}
 
-    .markerBtn.bus {
-        position: fixed;
-        top: 48%;
-        left: 63.2%;
-    }
-    .markerBtn.pink{
-        position: fixed;
-        top:48.5%;
-        left:60.5%;
-    }
-    .markerBtn.airport{
-        position: fixed;
-        top:60.5%;
-        left:72%;
-    }
-    .markerBtn.harmony{
-        position: fixed;
-        top:43%;
-        left:47.5%;
-    }
-    .markerBtn.dream{
-        position: fixed;
-        top:53.2%;
-        left:31%;
-    }
+	.markerBtn {
+		color: rgb(5, 215, 255);
+		animation-name: high-light;
+		animation-duration: 1.25s;
+		transform: scale(1.5);
+	}
 
+	.markerBtn.bus {
+		position: fixed;
+		top: 48%;
+		left: 63.2%;
+	}
+	.markerBtn.pink {
+		position: fixed;
+		top: 48.5%;
+		left: 60.5%;
+	}
+	.markerBtn.airport {
+		position: fixed;
+		top: 60.5%;
+		left: 72%;
+	}
+	.markerBtn.harmony {
+		position: fixed;
+		top: 43%;
+		left: 47.5%;
+	}
+	.markerBtn.dream {
+		position: fixed;
+		top: 53.2%;
+		left: 31%;
+	}
 
+	.tooltiptext {
+		visibility: hidden;
+		width: 120px;
+		background-color: rgba(0, 0, 0, 0.8);
+		font-size: 8px;
+		color: white;
+		text-align: center;
+		padding: 5px 0;
+		border-radius: 6px;
+		position: fixed;
+		z-index: 1;
+	}
 
-    .tooltiptext {
-        visibility: hidden;
-        width: 120px;
-        background-color: rgba(0, 0, 0, 0.8);
-        font-size: 8px;
-        color: white;
-        text-align: center;
-        padding: 5px 0;
-        border-radius: 6px;
-        position: fixed;
-        z-index: 1;
-    }
-    
-    .spawn-box {
-        position: fixed;
-        top: 90%;
-        left: 10%;
-        transform: translate(-50%, -50%);
-        width: fit-content;
-        padding-right: 5px;
-        padding-left: 5px;
-        height: 80px;
-        border-radius: 5px;
-        text-align: center;
-        display: none;
-    }
-    
-    .spawnBtn {
-        border: none;
-        border-radius: 10px;
-    }
-    
-    
-    .box-details {
-        display: flex;
-        flex-direction: column;
-        justify-content: flex-start;
-        align-items: center;
-    }
-    
-    .spawnbackground.disabled{
-        pointer-events: none;
-        filter:sepia(70%);
-    }
-    
-    .spawn-box span{
-        font-family: 'Oswald';
-        font-weight: 600;
-        font-size: 20px;
-        color: white;
-    }
-    
-    .spawn-box img{
-        margin-top: 10px;
-        width: 65%;
-        height: 65%;
-        border-radius: 4px;
-    }
-    
-    .markerBtn:hover{
-        cursor: pointer;
-        transform:scale(2);
-        color:rgb(214, 200, 12);
-    }
-    
-    
-    .markerBtn:hover .tooltiptext{
-        visibility: visible;
-    }
-    
-    .airport-active {
-        color: rgb(103, 214, 12);
-        transform: scale(2);
-    }
-    .pink-active {
-        color: rgb(103, 214, 12);
-        transform: scale(2);
-    }
-    .harmony-active {
-        color: rgb(103, 214, 12);
-        transform: scale(2);
-    }
-    .bus-active {
-        color: rgb(103, 214, 12);
-        transform: scale(2);
-    }
-    .dream-active {
-        color: rgb(103, 214, 12);
-        transform: scale(2);
-    }
-    
-    .spawn-btn {
-        background-color: rgb(84, 172, 11);
-        color: white;
-        font-family: 'Oswald';
-        font-weight: 600;
-        font-size: 20px;
-        padding: 0.5vw;
-        outline: none;
-    }
-    
-    .spawn-buttons{
-        display: flex;
-        flex-direction: row;
-    }
-    
-    .spawn-buttons button{
-        margin-left:5px;
-        transition:.3s ease;
-    }
-    
-    .spawn-buttons button.red{
-        background:red !important;
-    }
-    
-    .spawn-buttons button:hover{
-        cursor: pointer;
-    }
+	.spawn-box {
+		position: fixed;
+		top: 90%;
+		left: 10%;
+		transform: translate(-50%, -50%);
+		width: fit-content;
+		padding-right: 5px;
+		padding-left: 5px;
+		height: 80px;
+		border-radius: 5px;
+		text-align: center;
+		display: none;
+	}
 
+	.spawnBtn {
+		border: none;
+		border-radius: 10px;
+	}
 
+	.box-details {
+		display: flex;
+		flex-direction: column;
+		justify-content: flex-start;
+		align-items: center;
+	}
+
+	.spawnbackground.disabled {
+		pointer-events: none;
+		filter: sepia(70%);
+	}
+
+	.spawn-box span {
+		font-family: "Oswald";
+		font-weight: 600;
+		font-size: 20px;
+		color: white;
+	}
+
+	.spawn-box img {
+		margin-top: 10px;
+		width: 65%;
+		height: 65%;
+		border-radius: 4px;
+	}
+
+	.markerBtn:hover {
+		cursor: pointer;
+		transform: scale(2);
+		color: rgb(214, 200, 12);
+	}
+
+	.markerBtn:hover .tooltiptext {
+		visibility: visible;
+	}
+
+	.airport-active {
+		color: rgb(103, 214, 12);
+		transform: scale(2);
+	}
+	.pink-active {
+		color: rgb(103, 214, 12);
+		transform: scale(2);
+	}
+	.harmony-active {
+		color: rgb(103, 214, 12);
+		transform: scale(2);
+	}
+	.bus-active {
+		color: rgb(103, 214, 12);
+		transform: scale(2);
+	}
+	.dream-active {
+		color: rgb(103, 214, 12);
+		transform: scale(2);
+	}
+
+	.spawn-btn {
+		background-color: rgb(84, 172, 11);
+		color: white;
+		font-family: "Oswald";
+		font-weight: 600;
+		font-size: 20px;
+		padding: 0.5vw;
+		outline: none;
+	}
+
+	.spawn-buttons {
+		display: flex;
+		flex-direction: row;
+	}
+
+	.spawn-buttons button {
+		margin-left: 5px;
+		transition: 0.3s ease;
+	}
+
+	.spawn-buttons button.red {
+		background: red !important;
+	}
+
+	.spawn-buttons button:hover {
+		cursor: pointer;
+	}
 }

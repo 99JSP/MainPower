@@ -28,7 +28,7 @@ end)
 MP.Functions.RegisterServerCallback('MP-Base:getChar', function(source, cb)
     local id = GetPlayerIdentifiers(source)[1]
 
-    exports['ghmattimysql']:execute('SELECT * FROM players WHERE identifier = @identifier', {['@identifier'] = id}, function(result)
+    MySQL.query('SELECT * FROM players WHERE identifier = @identifier', {['@identifier'] = id}, function(result)
         if result then
             cb(result)
         end
@@ -45,9 +45,9 @@ AddEventHandler('MP-Base:deleteChar', function(chardata)
 
     local citizenid = '' .. cid .. '-' .. identifier ..'' -- 1-SteamID
 
-    exports['ghmattimysql']:execute('DELETE FROM players WHERE citizenid = @citizenid', {['@citizenid'] = citizenid})
+    MySQL.query('DELETE FROM players WHERE citizenid = @citizenid', {['@citizenid'] = citizenid})
     --  This should remove everything connected where citizenid
-    -- exports['ghmattimysql']:execute('DELETE FROM * WHERE citizenid = @citizenid', {['@citizenid'] = citizenid})
+    -- MySQL.query('DELETE FROM * WHERE citizenid = @citizenid', {['@citizenid'] = citizenid})
 
     -- Add Discord Logs here.
 
@@ -64,7 +64,7 @@ AddEventHandler('MP-Base:server:createCharacter', function(cData)
     local citizenid = "".. cData.cid .. "-" .. identifier .. ""
     local charname = 'First: ' .. cData.firstname .. ' Last: ' .. cData.lastname .. ''
 
-    exports['ghmattimysql']:execute('INSERT INTO players (`identifier`, `license`, `name`, `cid`, `cash`, `bank`, `firstname`, `lastname`, `sex`, `dob`, `phone`, `citizenid`) VALUES (@identifier, @license, @name, @cid, @cash, @bank, @firstname, @lastname, @sex, @dob, @phone, @citizenid)', {
+    MySQL.query('INSERT INTO players (`identifier`, `license`, `name`, `cid`, `cash`, `bank`, `firstname`, `lastname`, `sex`, `dob`, `phone`, `citizenid`) VALUES (@identifier, @license, @name, @cid, @cash, @bank, @firstname, @lastname, @sex, @dob, @phone, @citizenid)', {
         ['identifier'] = identifier,
         ['license'] = license,
         ['name'] = name,
