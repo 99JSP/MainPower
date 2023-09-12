@@ -2,11 +2,11 @@
 All Main Power Files for fivem framework
 # Discord
 For Support: https://discord.gg/wf5emKqqvc
-For Server: [Coming Soon]
+For Server: https://mainpower.net
 
 
 ### More Info  
-Coming Soon. 
+[Coming Soon. ](https://mainpower.net)
 
 
 # Server CFG
