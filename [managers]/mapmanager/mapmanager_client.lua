@@ -3,7 +3,7 @@ local gametypes = {}
 
 AddEventHandler('onClientResourceStart', function(res)
     -- parse metadata for this resource
-
+	ShutdownLoadingScreen()
     -- map files
     local num = GetNumResourceMetadata(res, 'map')
     if num > 0 then
