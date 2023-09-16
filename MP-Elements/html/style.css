@@ -1,111 +1,132 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap");
 
 body {
-    display: block;
-    z-index: -1000;
+	display: block;
+	z-index: -1000;
 }
 
 #cash {
-    position: absolute;
-    right: 2vw;
-    top: 8vh;
-    font-family: 'Poppins', sans-serif;
-    font-weight: 700;
-    font-size: 30px;
-    color: rgb(255, 255, 255);
-    text-shadow: 1.5px 1.5px 0px #000000;
+	position: absolute;
+	right: 2vw;
+	top: 8vh;
+	font-family: "Poppins", sans-serif;
+	font-weight: 700;
+	font-size: 30px;
+	color: rgb(255, 255, 255);
+	text-shadow: 1.5px 1.5px 0px #000000;
 }
 
 #cashchange {
-    position: absolute;
-    right: 2vw;
-    top: 11vh;
-    font-family: 'Poppins', sans-serif;
-    font-weight: 700;
-    font-size: 30px;
-    color: rgb(92, 229, 18);
-    text-shadow: 1.5px 1.5px 0px #000000;
+	position: absolute;
+	right: 2vw;
+	top: 11vh;
+	font-family: "Poppins", sans-serif;
+	font-weight: 700;
+	font-size: 30px;
+	color: rgb(92, 229, 18);
+	text-shadow: 1.5px 1.5px 0px #000000;
 }
 
 #dollar {
-    font-size: 28px;
-    font-weight: 700;
-    color: rgb(30, 156, 30);
+	font-size: 28px;
+	font-weight: 700;
+	color: rgb(30, 156, 30);
 }
-
 
 #bank {
-    position: absolute;
-    right: 2vw;
-    top: 12.5vh;
-    font-family: 'Poppins', sans-serif;
-    font-size: 35px;
-    font-weight: 700;
-    color: rgb(119, 119, 119);
-    text-shadow: 1.5px 1.5px 0px #000000;
+	position: absolute;
+	right: 2vw;
+	top: 12.5vh;
+	font-family: "Poppins", sans-serif;
+	font-size: 35px;
+	font-weight: 700;
+	color: rgb(119, 119, 119);
+	text-shadow: 1.5px 1.5px 0px #000000;
 }
-
 
 #bankchange {
-    position: absolute;
-    right: 2vw;
-    font-family: 'Poppins', sans-serif;
-    font-size: 25px;
-    font-weight: 200;
-    text-shadow: 1.5px 1.5px 0px #000000;
+	position: absolute;
+	right: 2vw;
+	font-family: "Poppins", sans-serif;
+	font-size: 25px;
+	font-weight: 200;
+	text-shadow: 1.5px 1.5px 0px #000000;
 }
 
-body {
-    overflow: hidden;
-    height:100%;
-    width:100%;
+/* body {
+	overflow: hidden;
+	height: 100%;
+	width: 100%;
+} */
+
+@media only screen and (max-height: 600px) {
+	.wrapdiv {
+		position: absolute;
+		bottom: 5vh !important;
+		font-family: "Poppins", sans-serif;
+		color: white;
+		height: 10% !important;
+		padding: 2px;
+		font-size: 8px !important;
+	}
 }
 
-/* noti */
+@media only screen and (max-height: 800px) {
+	.wrapdiv {
+		position: absolute;
+		bottom: 2vh !important;
+		font-family: "Poppins", sans-serif;
+		color: white;
+		padding: 2px;
+		font-size: 12px !important;
+	}
+}
 
 .wrapdiv {
-    font-family: 'Poppins', sans-serif;
-    display: block;
-    margin-left: 15%;
-    margin-top: 52.925%;
-    width: 25%;
-    height: 20%;
-    color: white;
-    padding: 2px;
+	position: absolute;
+	bottom: 0vh;
+	font-family: "Poppins", sans-serif;
+	color: white;
+	padding: 2px;
+	height: 5%;
+	font-size: 14px;
+	overflow: hidden !important;
 }
 
 .noti {
-    height: 10%;
-    overflow: hidden;
-    position: relative;
+	position: relative;
+	top: 9vh;
+	left: 2vw;
+	height: 10%;
+	text-align: center;
+	overflow: hidden;
 }
 
 .noti-bg {
-    font-family: 'Poppins', sans-serif;
-    background-color: rgba(16, 35, 246, 0.8);
-    color: white;
-    margin: 6px;
-    text-align: center;
-    padding: 6px;
-    border-radius: 6px;
-    font-weight: 2px;
-    font-size: 18px;
-    display: inline-block;
+	font-family: "Poppins", sans-serif;
+	color: white;
+	margin: 6px;
+	text-align: center;
+	background-color: rgba(16, 35, 246, 0.8);
+	padding: 6px;
+	border-radius: 6px;
+	font-weight: 2px;
 }
 
 .blue {
-    background-color: rgba(84, 97, 247, 0.8);
+	background-color: rgba(84, 97, 247, 0.8);
 }
 
 .red {
-    background-color: rgba(222, 72, 72, 0.8);
+	background-color: rgba(222, 72, 72, 0.8);
 }
 .green {
-    background-color: rgba(133, 239, 95, 0.8);
+	background-color: rgba(133, 239, 95, 0.8);
 }
 
 /* Usage Key */
-.Usuage {
+/* change later/ */
+/* .Usuage {
     position: relative;
     background-color: rgba(31, 40, 77, 0.8);
     display: block;
@@ -123,4 +144,4 @@ body {
 #UseKey{
     color: white;
     height: 25%;
-}
+} */

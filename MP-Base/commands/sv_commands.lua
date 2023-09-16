@@ -1,7 +1,7 @@
 TriggerEvent('MP-Base:addGroupCommand', 'setgroup', 'admin', function(source,args,user)
     local target = tonumber(args[1]) -- player id in game
     local group = tostring(args[2]) -- group [admin,mod,dev]
-    local player = MP.Functions.getPlayer(target)
+    local player = MP.Functions.GetPlayer(target)
     if target ~= nil then
         if player then
             if MP.UserGroups[group] then
@@ -38,7 +38,7 @@ end)
 -- prio
 
 TriggerEvent('MP-Base:addGroupCommand', 'EditPrio', 'admin', function(source,args, user)
-    local Player = MP.Functions.getPlayer(tonumber(args[1]))
+    local Player = MP.Functions.GetPlayer(tonumber(args[1]))
     local level = tonumber(args[2]) -- # amount
     if Player ~= nil then
         UpdatePriority(tonumber(args[1]), level)
@@ -51,7 +51,7 @@ end)
 
 TriggerEvent('MP-Base:addGroupCommand', 'CheckPrio', 'admin', function(source,args,user)
     local src = source
-    local Player = MP.Functions.getPlayer(tonumber(args[1]))
+    local Player = MP.Functions.GetPlayer(tonumber(args[1]))
     MySQL.query.await("SELECT * FROM `queue` WHERE `steam` = '"..GetPlayerIdentifiers(tonumber(args[1]))[1].."'", function(result)
 		if result[1] ~= nil then
 			local prio = result[1].priority
@@ -61,7 +61,7 @@ TriggerEvent('MP-Base:addGroupCommand', 'CheckPrio', 'admin', function(source,ar
 end)
 
 function UpdatePriority(source, level)
-    local Player = MP.Functions.getPlayer(source)
+    local Player = MP.Functions.GetPlayer(source)
     if Player ~= nil then
         MySQL.query("DELETE FROM `queue` WHERE `steam` = '"..GetPlayerIdentifiers(source)[1].."'")
 		Citizen.Wait(100)
@@ -71,7 +71,7 @@ end
 
 TriggerEvent('MP-Base:addCommand', 'ooc', function(source, args)
     local msg = table.concat(args, ' ')
-    local Player = MP.Functions.getPlayer(source)
+    local Player = MP.Functions.GetPlayer(source)
     local id = Player.Data.PlayerId
     local first = Player.Data.firstname
     local last = Player.Data.lastname

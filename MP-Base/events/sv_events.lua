@@ -16,7 +16,7 @@ MP.Functions.TriggerServerCallback = function(name, requestId, source, cb, ...)
 	end
 end
 
-MP.Functions.getPlayer = function(source)
+MP.Functions.GetPlayer = function(source)
 	if MP.Players[source] ~= nil then
 		return MP.Players[source]
 	end
@@ -53,9 +53,9 @@ MP.Functions.CreatePlayer = function(source, Data)
 end
 
 MP.Functions.LoadPlayer = function(source, pData, cid, new)
-	print("is " .. new .. " = new? ")
     local src 			= source
 	local identifier 	= pData.identifier
+	-- local player = MP.Functions.GetPlayer(source)
 
 	Wait(7)
 	MySQL.query('SELECT * FROM players WHERE identifier = @identifier AND cid = @cid', {['@identifier'] = identifier, ['@cid'] = cid}, function(result)
@@ -65,23 +65,27 @@ MP.Functions.LoadPlayer = function(source, pData, cid, new)
 
         MP.Player.LoadData(source, identifier, cid)
 		Wait(7)
-		local player = MP.Functions.getPlayer(source)
+		local player = MP.Functions.GetPlayer(source)
         TriggerClientEvent('MP-SetCharData', source, {
-            identifier = result[1].identifier,
+			identifier = result[1].identifier,
 			license = result[1].license,
 			cid = result[1].cid,
+			sex = result[1].sex,
 			name = result[1].name,
 			cash = result[1].cash,
 			bank = result[1].bank,
+			phone = result[1].phone,
 			citizenid = result[1].citizenid,
+			new = result[1].new
         })
-
+		TriggerEvent("ox_inventory:setPlayerInventory", player.Data)
         TriggerClientEvent('MP-Base:PlayerLoaded', source, new)
 		TriggerClientEvent('MP-Elements:client:OpenUI:Cash', source)
 
         -- TriggerClientEvent() come back to for ui
         -- Trigger for Admin
     end)
+	-- exports['ox_inventory']:setPlayerInventory(player.Data)
 end
 
 MP.Functions.addCommand = function(command, callback, suggestion, args)
@@ -172,3 +176,23 @@ MP.Functions.ClearCommands = function(source)
         TriggerClientEvent('chat:removeSuggestion', src, '/'..k, v.help, v.params)
     end
 end
+
+RegisterNetEvent('MP:UpdatePlayer', function()
+    local src = source
+    local Player = MP.Functions.GetPlayer(src)
+    if not Player then return end
+    Player.Functions.Save()
+end)
+
+function MP.Functions.GetPlayers()
+    return MP.Players
+end
+
+-- logoff
+AddEventHandler('playerDropped', function(reason)
+    local src = source
+    if not MP.Players[src] then return end
+    local Player = MP.Players[src]
+    Player.Functions.Save()
+    MP.Players[src] = nil
+end)

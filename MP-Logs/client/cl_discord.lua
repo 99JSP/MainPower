@@ -5,7 +5,7 @@ Citizen.CreateThread(function()
         SetDiscordRichPresenceAssetText(MP.Discord.AssetText)
         SetDiscordRichPresenceAssetSmall(MP.Discord.SmallAssetImg)
         SetDiscordRichPresenceAssetSmallText(MP.Discord.SmallAssetText)
-        if MP.Discord.ButtonActive then 
+        if MP.Discord.ButtonActive then
             SetDiscordRichPresenceAction(0, MP.Discord.ActionButtonName1, MP.Discord.AssetDescriptionName1)
         end
         Wait(MP.Discord.Wait)

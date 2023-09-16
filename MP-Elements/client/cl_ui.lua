@@ -1,5 +1,5 @@
 local MP = exports['MP-Base']:GetObject()
-local loaded = false 
+local loaded = false
 
 RegisterNetEvent('MP-Elements:client:OpenUI:Cash')
 AddEventHandler('MP-Elements:client:OpenUI:Cash', function()
@@ -17,17 +17,21 @@ end)
 RegisterNetEvent('MP-Elements:Client:UpdateCash')
 AddEventHandler('MP-Elements:Client:UpdateCash', function(amount,change,value)
     SendNUIMessage({action = 'updateValue', key = 'cash', value = amount})
-    if change == 'add' then 
+    if change == 'add' then
         SendNUIMessage({action = 'addCash', value = value})
-    elseif change == 'remove' then 
+    elseif change == 'remove' then
         SendNUIMessage({action = 'removeCash', value = value})
     end
 end)
 
 RegisterCommand('cash', function(source, args)
+	MP.Functions.TriggerServerCallback('MP-Elements:Server:getMoney', function(cash, bank)
+        SendNUIMessage({action = 'setValue', key = 'cash', value = cash})
+    end)
     SendNUIMessage({action = "show"})
-    Wait(5000)
-    SendNUIMessage({action = "hide"})
+	Wait(5000)
+	SendNUIMessage({action = "hide"})
+
 end)
 
 function OpenNoti(clr, msg, time)
@@ -43,7 +47,7 @@ end
 -- exports['MP-Elements']:Noti(clr, msg, time)
 exports('Noti', function(clr,msg,time)
     if not clr then clr = 1 end -- default blue
-    if not time then time = 6000 end 
+    if not time then time = 6000 end
     if time == 'short' then time = 6000 end if time == 'long' then time = 12000 end
     OpenNoti(clr, msg, time)
 end)
@@ -53,6 +57,6 @@ AddEventHandler('MP-Elements:SendNotification', function(clr, msg)
     exports['MP-Elements']:Noti(clr, msg, 6000)
 end)
 
--- RegisterCommand('test', function(args, raw)
+-- RegisterCommand('tes2t', function(args, raw)
 --     exports['MP-Elements']:Noti(2, "cocks n balls", 6000)
 -- end)

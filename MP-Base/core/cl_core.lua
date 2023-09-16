@@ -4,6 +4,7 @@ function MP.Base.Start(self)
             if NetworkIsSessionStarted() then
                 TriggerEvent('MP-Base:Start')
                 TriggerServerEvent('MP-Base:ServerStart')
+				TriggerEvent("MP-Base:PlayerLoaded")
                 break
             end
         end
@@ -24,3 +25,15 @@ end)
 -- RegisterNetEvent("MP-Admin:updateGroup")
 -- AddEventHandler("MP-Admin:updateGroup", function(group)
 -- end)
+CreateThread(function()
+    while true do
+        local sleep = 0
+        if LocalPlayer.state.LoggedIn then
+            sleep = (1000 * 60) * MP.CharacterSaving
+			-- print("saving character?")
+            TriggerServerEvent('MP:UpdatePlayer')
+        end
+        Wait(sleep)
+    end
+end)
+

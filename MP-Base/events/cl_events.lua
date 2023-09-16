@@ -50,6 +50,11 @@ exports('MP-GetVehicleInDirection', function()
 
 	return nil
 end)
+
+RegisterNetEvent('MP:Player:UpdatePlayerData', function()
+    TriggerServerEvent('MP:UpdatePlayer')
+end)
+
 -- MP.Functions.DeleteVehicle = function(vehicle) -- deletes vehicle
 --     SetEntityAsMissionEntity(vehicle, false, true)
 --     DeleteVehicle(vehicle)
@@ -138,7 +143,12 @@ end)
 
 RegisterNetEvent('MP-SetCharData')
 AddEventHandler('MP-SetCharData', function(Player)
-    pData = Player
+	-- TEST WITH SOMEONE LMAOOO
+    MP.PlayerData = Player
+end)
+
+RegisterNetEvent('MP:Player:SetPlayerData', function(val)
+    MP.PlayerData = val
 end)
 
 -- Drawing 3d Text export

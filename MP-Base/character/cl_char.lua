@@ -18,10 +18,10 @@ CreateThread(function()
     end
 end)
 
--- RegisterNetEvent('MP-Base:Char:Selecting')
--- AddEventHandler('MP-Base:Char:Selecting', function()
---     SelectChar(true)
--- end)
+RegisterNetEvent('MP-Base:Char:Selecting')
+AddEventHandler('MP-Base:Char:Selecting', function()
+    SelectChar(true)
+end)
 
 RegisterNUICallback('createCharacter', function(data)
     local charData = data.charData
@@ -109,6 +109,7 @@ AddEventHandler('MP-Base:PlayerLoaded', function(new)
     SetPlayerInvincible(source, true)
     FreezeEntityPosition(source, true)
     SetEntityCoords(source, 0,2000,0)
+	LocalPlayer.state:set('LoggedIn', true, false)
     -- In Air
     if new == 1 then
         -- New Player
@@ -118,9 +119,20 @@ AddEventHandler('MP-Base:PlayerLoaded', function(new)
         SetEntityCoords(source, -1037.88, -2738.009, 20.17)
         FreezeEntityPosition(source, false)
         SetPlayerInvincible(source, false)
+
+
+
+		--  Auto set model for freemode asap.
+		TriggerEvent("qb-clothes:client:CreateFirstCharacter", source)
     elseif new == 0 then
+		-- need to fix not saved clothing?
+		TriggerServerEvent("qb-clothes:loadPlayerSkin", source)
         TriggerEvent('MP-Spawn:openMenu')
     end
+end)
+
+RegisterNetEvent('MP:Client:OnPlayerUnload', function()
+    LocalPlayer.state:set('LoggedIn', false, false)
 end)
 
 RegisterNUICallback('selectCharacter', function(data)

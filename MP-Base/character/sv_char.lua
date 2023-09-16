@@ -34,6 +34,13 @@ MP.Functions.RegisterServerCallback('MP-Base:getChar', function(source, cb)
         end
     end)
 end)
+-- deleting
+local tables = {
+	{ table = 'players' },
+    { table = 'playerskins' },
+    { table = 'player_outfits' }
+}
+
 
 RegisterServerEvent('MP-Base:deleteChar')
 AddEventHandler('MP-Base:deleteChar', function(chardata)
@@ -44,8 +51,13 @@ AddEventHandler('MP-Base:deleteChar', function(chardata)
     local charname = 'First: ' .. chardata.firstname .. ' Last: ' .. chardata.lastname ..''
 
     local citizenid = '' .. cid .. '-' .. identifier ..'' -- 1-SteamID
+	local numbertables = #tables
+	for i = 1, numbertables do
+		local v = tables[i]
+		MySQL.query('DELETE FROM ' .. v.table .. ' WHERE citizenid = @citizenid', {['@citizenid'] = citizenid})
+	end
 
-    MySQL.query('DELETE FROM players WHERE citizenid = @citizenid', {['@citizenid'] = citizenid})
+
     --  This should remove everything connected where citizenid
     -- MySQL.query('DELETE FROM * WHERE citizenid = @citizenid', {['@citizenid'] = citizenid})
 

@@ -19,11 +19,9 @@ MP.DB.LoadCharacter = function(source, license, identifier, cid)
 
     MySQL.query('SELECT * FROM players WHERE identifier = @identifier AND cid = @cid', {['@identifier'] = identifier, ['@cid'] = cid}, function(result)
         if result[1].new == true then
-            print('New Player')
             MP.Functions.LoadPlayer(source, PlayerData, cid, 1)
             MySQL.query('UPDATE players SET new = @new WHERE identifier = @identifier AND cid = @cid', {['@identifier'] = identifier, ['@cid'] = cid, ['@new'] = 0})
         elseif result[1].new == false then
-            print('LOAD SPAWN')
             MP.Functions.LoadPlayer(source, PlayerData, cid, 0)
         end
     end)
