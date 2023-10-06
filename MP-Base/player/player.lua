@@ -1,4 +1,3 @@
-
 MP.Player = {}
 
 MP.Player.LoadData = function(source, identifier, cid)
@@ -23,6 +22,16 @@ MP.Player.LoadData = function(source, identifier, cid)
 		self.Data.phone = result[1].phone
 		self.Data.metadata = result[1].metadata
         self.Data.citizenid = '' ..  self.Data.cid .. '-' .. self.Data.identifier .. ''
+
+		self.Functions.UpdateMoney = function(bankingType, amount, change)
+			MP.Functions.UpdateMoney(self, bankingType, amount, change)
+			if tostring(change) == "add" then
+				self.Data.bankingType = self.Data.bankingType + amount
+			elseif tostring(change) == "del" then
+				self.Data.bankingType = self.Data.bankingType - amount
+			end
+			self.Functions.UpdatePlayerData()
+		end
 
         self.Functions.addCash = function(amount)
             MP.Functions.addCash(self, amount)
@@ -115,6 +124,55 @@ end
 --     local PlayerData = MP.Players[source].Data
 -- 	print(PlayerData)
 -- end)
+
+
+function MP.Functions.UpdateMoney(source, type, amount, change)
+	local ped = GetPlayerPed(source)
+    local PlayerData = MP.Players[source].Data
+	local newType = tostring(change)
+	local newAmmount = tonumber(amount)
+	if not newAmmount and not change then end return -- ends no issue nothing happens
+	if PlayerData then -- making sure data is grabbed
+		if newType == "add" then
+			if tostring(type) == "bank" then
+				print("Old Ammount = " ..PlayerData.bank .. " " )
+				PlayerData.bank = PlayerData.bank + newAmmount
+				print("New Ammount = " ..PlayerData.bank .. " " )
+				MySQL.query("UPDATE players SET bank = :bank WHERE citizenid = :citizenid", {
+					['bank'] = PlayerData.bank,
+				})
+			elseif tostring(type) == "cash" then
+				print("Old Ammount = " ..PlayerData.cash .. " " )
+				PlayerData.cash = PlayerData.cash + newAmmount
+				print("New Ammount = " ..PlayerData.cash .. " " )
+				MySQL.query("UPDATE players SET cash = :cash WHERE citizenid = :citizenid", {
+					['cash'] = PlayerData.cash,
+				})
+			else
+				print("no type")
+			end
+		elseif newType == "del" then
+			if tostring(type) == "bank" then
+				print("Old Ammount = " ..PlayerData.bank .. " " )
+				PlayerData.bank = PlayerData.bank - newAmmount
+				print("New Ammount = " ..PlayerData.bank .. " " )
+				MySQL.query("UPDATE players SET bank = :bank WHERE citizenid = :citizenid", {
+					['bank'] = PlayerData.bank,
+				})
+			elseif tostring(type) == "cash" then
+				print("Old Ammount = " ..PlayerData.cash .. " " )
+				PlayerData.cash = PlayerData.cash - newAmmount
+				print("New Ammount = " ..PlayerData.cash .. " " )
+				MySQL.query("UPDATE players SET cash = :cash WHERE citizenid = :citizenid", {
+					['cash'] = PlayerData.cash,
+				})
+			else
+				print("no type")
+			end
+		end
+	end
+end
+
 
 function MP.Player.Save(source)
     local ped = GetPlayerPed(source)

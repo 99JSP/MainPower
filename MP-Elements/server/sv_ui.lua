@@ -15,11 +15,6 @@ MP.Functions.RegisterServerCallback('MP-Elements:Server:getMoney', function(sour
     end
 end)
 
-
-RegisterCommand('money', function(source, args)
-	TriggerEvent("MP-Elements:Server:UpdateMoney", source, "add", tonumber(args[2]))
-end)
-
 RegisterServerEvent('MP-Elements:Server:UpdateMoney')
 AddEventHandler('MP-Elements:Server:UpdateMoney', function(source, change, amount)
 	print(amount)

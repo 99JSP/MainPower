@@ -8,6 +8,7 @@ AddEventHandler('MP-Admin:SaveCoords', function(blank, x, y, z)
     file = io.open('coords.txt', 'a')
     if file then
         file:write('[' .. blank .. ']' .. ' = ' .. x .. ',' .. y .. ',' .. z .. '')
+		-- [1] = x,y,z
     end
     file:close()
 end)

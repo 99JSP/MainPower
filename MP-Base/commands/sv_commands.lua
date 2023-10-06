@@ -34,7 +34,18 @@ TriggerEvent('MP-Base:addGroupCommand', 'sc', 'admin', function(source,args, use
     TriggerClientEvent('MP-Admin:Client:SaveCoords', src)
 end)
 
-
+-- /amoney id type[cash/bank] amount change[del/add]
+TriggerEvent('MP-Base:addGroupCommand', 'aMoney', 'admin', function(source,args, user)
+    local Player = MP.Functions.GetPlayer(tonumber(args[1]))
+    local bankingType = tostring(args[2]) -- # amount
+	local amount = tonumber(args[3])
+	local changer = tostring(args[4])
+    if Player ~= nil then
+        Player.Functions.UpdateMoney(bankingType, amount ,change)
+    else
+        TriggerClientEvent('MP-Elements:SendNotification', source,  2, "No Player Found." )
+    end
+end)
 -- prio
 
 TriggerEvent('MP-Base:addGroupCommand', 'EditPrio', 'admin', function(source,args, user)
@@ -48,6 +59,8 @@ TriggerEvent('MP-Base:addGroupCommand', 'EditPrio', 'admin', function(source,arg
         TriggerClientEvent('MP-Elements:SendNotification', source,  2, "No Player Found." )
     end
 end)
+
+
 
 TriggerEvent('MP-Base:addGroupCommand', 'CheckPrio', 'admin', function(source,args,user)
     local src = source
