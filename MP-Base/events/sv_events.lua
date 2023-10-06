@@ -38,6 +38,7 @@ AddEventHandler('MP-Base:server:UpdatePlayer', function()
 end)
 
 -- Character SQL Stuff
+-- check if need to remove it
 MP.Functions.CreatePlayer = function(source, Data)
 	MySQL.query('INSERT INTO players (`identifier`, `license`, `name`, `cash`, `bank`) VALUES (@identifier, @license, @name, @cash, @bank)', {
 		['identifier'] = Data.identifier,
@@ -177,7 +178,7 @@ MP.Functions.ClearCommands = function(source)
     end
 end
 
-RegisterNetEvent('MP:UpdatePlayer', function()
+RegisterServerEvent('MP:UpdatePlayer', function()
     local src = source
     local Player = MP.Functions.GetPlayer(src)
     if not Player then return end
