@@ -20,9 +20,14 @@ exports('GetObject', function()
     return MP
 end)
 
+-- exports['MP-Base']:changeMoney(source, bankingType, amount, changer)
+exports('changeMoney', function(source, bankingType, amount, changer)
+    local Player = MP.Functions.GetPlayer(source)
+	if Player ~= nil then
+        Player.Functions.UpdateMoney(bankingType, amount, changer)
+    end
+end)
 
-
--- local MP = exports['MP-Base']:MP:GetObject()
 
 -- Commands
 AddEventHandler('MP-Base:addCommand', function(command, callback, suggestion, args)

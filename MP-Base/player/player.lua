@@ -24,54 +24,22 @@ MP.Player.LoadData = function(source, identifier, cid)
         self.Data.citizenid = '' ..  self.Data.cid .. '-' .. self.Data.identifier .. ''
 
 		self.Functions.UpdateMoney = function(bankingType, amount, change)
-			MP.Functions.UpdateMoney(self, bankingType, amount, change)
-			if tostring(change) == "add" then
-				self.Data.bankingType = self.Data.bankingType + amount
-			elseif tostring(change) == "del" then
-				self.Data.bankingType = self.Data.bankingType - amount
+			if bankingType == "cash" then
+				if tostring(change) == "add" then
+					self.Data.cash = self.Data.cash + amount
+				elseif tostring(change) == "del" then
+					self.Data.cash = self.Data.cash - amount
+				end
+			elseif bankingType == "bank" then
+				if tostring(change) == "add" then
+					self.Data.bank = self.Data.bank + amount
+				elseif tostring(change) == "del" then
+					self.Data.bank = self.Data.bank - amount
+				end
 			end
+			MP.Functions.UpdateMoney(self, bankingType, amount, change)
 			self.Functions.UpdatePlayerData()
 		end
-
-        self.Functions.addCash = function(amount)
-            MP.Functions.addCash(self, amount)
-            self.Data.cash = self.Data.cash + amount
-        end
-
-        self.Functions.GiveCash = function(amount)
-            MP.Functions.GiveCash(self, amount)
-            self.Data.cash = self.Data.cash + amount
-        end
-
-        self.Functions.removeCash = function(amount)
-            MP.Functions.removeCash(self, amount)
-            self.Data.cash = self.Data.cash - amount
-        end
-
-		self.Functions.AddBank = function(amount)
-            MP.Functions.AddBank(self, amount)
-            self.Data.bank = self.Data.bank + amount
-        end
-
-        self.Functions.GiveBank = function(amount)
-            MP.Functions.GiveBank(self, amount)
-            self.Data.bank = self.Data.bank + amount
-        end
-
-        self.Functions.removeBank = function(amount)
-            MP.Functions.removeBank(self, amount)
-            self.Data.bank = self.Data.bank + amount
-        end
-
-        self.Functions.setCash = function(amount)
-            self.Data.cash =  amount
-            MP.Functions.setCash(self, amount)
-        end
-
-        self.Functions.setBank = function(amount)
-            self.Data.bank =  amount
-            MP.Functions.setBank(self, amount)
-        end
 
 		function self.Functions.Save()
 			if self.Offline then
@@ -126,50 +94,17 @@ end
 -- end)
 
 
-function MP.Functions.UpdateMoney(source, type, amount, change)
-	local ped = GetPlayerPed(source)
-    local PlayerData = MP.Players[source].Data
-	local newType = tostring(change)
-	local newAmmount = tonumber(amount)
-	if not newAmmount and not change then end return -- ends no issue nothing happens
+function MP.Functions.UpdateMoney(player, bankingType, amount, change)
+    local PlayerData = player.Data
+	if not newAmmount and not change then end -- ends no issue nothing happens
 	if PlayerData then -- making sure data is grabbed
-		if newType == "add" then
-			if tostring(type) == "bank" then
-				print("Old Ammount = " ..PlayerData.bank .. " " )
-				PlayerData.bank = PlayerData.bank + newAmmount
-				print("New Ammount = " ..PlayerData.bank .. " " )
-				MySQL.query("UPDATE players SET bank = :bank WHERE citizenid = :citizenid", {
-					['bank'] = PlayerData.bank,
-				})
-			elseif tostring(type) == "cash" then
-				print("Old Ammount = " ..PlayerData.cash .. " " )
-				PlayerData.cash = PlayerData.cash + newAmmount
-				print("New Ammount = " ..PlayerData.cash .. " " )
-				MySQL.query("UPDATE players SET cash = :cash WHERE citizenid = :citizenid", {
-					['cash'] = PlayerData.cash,
-				})
-			else
-				print("no type")
-			end
-		elseif newType == "del" then
-			if tostring(type) == "bank" then
-				print("Old Ammount = " ..PlayerData.bank .. " " )
-				PlayerData.bank = PlayerData.bank - newAmmount
-				print("New Ammount = " ..PlayerData.bank .. " " )
-				MySQL.query("UPDATE players SET bank = :bank WHERE citizenid = :citizenid", {
-					['bank'] = PlayerData.bank,
-				})
-			elseif tostring(type) == "cash" then
-				print("Old Ammount = " ..PlayerData.cash .. " " )
-				PlayerData.cash = PlayerData.cash - newAmmount
-				print("New Ammount = " ..PlayerData.cash .. " " )
-				MySQL.query("UPDATE players SET cash = :cash WHERE citizenid = :citizenid", {
-					['cash'] = PlayerData.cash,
-				})
-			else
-				print("no type")
-			end
-		end
+		-- saves cash/bank on update
+		MySQL.query("UPDATE players SET bank = :bank, cash = :cash WHERE citizenid = :citizenid", {
+			['bank'] = PlayerData.bank,
+			['cash'] = PlayerData.cash,
+			['citizenid'] = PlayerData.citizenid,
+		})
+
 	end
 end
 

@@ -38,7 +38,6 @@ AddEventHandler('MP-Base:server:UpdatePlayer', function()
 end)
 
 -- Character SQL Stuff
--- check if need to remove it
 MP.Functions.CreatePlayer = function(source, Data)
 	MySQL.query('INSERT INTO players (`identifier`, `license`, `name`, `cash`, `bank`) VALUES (@identifier, @license, @name, @cash, @bank)', {
 		['identifier'] = Data.identifier,
@@ -85,6 +84,8 @@ MP.Functions.LoadPlayer = function(source, pData, cid, new)
 
         -- TriggerClientEvent() come back to for ui
         -- Trigger for Admin
+		TriggerEvent("MP-Admin:Setup", source, player.Data.identifier )
+
     end)
 	-- exports['ox_inventory']:setPlayerInventory(player.Data)
 end
@@ -178,7 +179,7 @@ MP.Functions.ClearCommands = function(source)
     end
 end
 
-RegisterServerEvent('MP:UpdatePlayer', function()
+RegisterNetEvent('MP:UpdatePlayer', function()
     local src = source
     local Player = MP.Functions.GetPlayer(src)
     if not Player then return end

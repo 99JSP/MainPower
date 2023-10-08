@@ -35,13 +35,16 @@ TriggerEvent('MP-Base:addGroupCommand', 'sc', 'admin', function(source,args, use
 end)
 
 -- /amoney id type[cash/bank] amount change[del/add]
+
+
+
 TriggerEvent('MP-Base:addGroupCommand', 'aMoney', 'admin', function(source,args, user)
     local Player = MP.Functions.GetPlayer(tonumber(args[1]))
     local bankingType = tostring(args[2]) -- # amount
 	local amount = tonumber(args[3])
 	local changer = tostring(args[4])
     if Player ~= nil then
-        Player.Functions.UpdateMoney(bankingType, amount ,change)
+        Player.Functions.UpdateMoney(bankingType, amount, changer)
     else
         TriggerClientEvent('MP-Elements:SendNotification', source,  2, "No Player Found." )
     end
