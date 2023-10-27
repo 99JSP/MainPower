@@ -44,7 +44,9 @@ TriggerEvent('MP-Base:addGroupCommand', 'aMoney', 'admin', function(source,args,
 	local amount = tonumber(args[3])
 	local changer = tostring(args[4])
     if Player ~= nil then
-        Player.Functions.UpdateMoney(bankingType, amount, changer)
+		exports['MP-Base']:changeMoney(source, bankingType, amount, changer)
+
+        -- Player.Functions.UpdateMoney(bankingType, amount, changer)
     else
         TriggerClientEvent('MP-Elements:SendNotification', source,  2, "No Player Found." )
     end

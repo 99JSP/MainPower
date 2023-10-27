@@ -24,6 +24,8 @@ MP.Player.LoadData = function(source, identifier, cid)
         self.Data.citizenid = '' ..  self.Data.cid .. '-' .. self.Data.identifier .. ''
 
 		self.Functions.UpdateMoney = function(bankingType, amount, change)
+			-- print(" bankingtype =" .. bankingType .. "amount =" .. amount .. "changer =" .. change .. "")
+
 			if bankingType == "cash" then
 				if tostring(change) == "add" then
 					self.Data.cash = self.Data.cash + amount
