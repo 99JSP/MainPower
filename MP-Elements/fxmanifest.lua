@@ -8,8 +8,8 @@ client_scripts {
 	'client/cl_ui.lua',
 }
 
-server_script '@oxmysql/lib/MySQL.lua'
 server_scripts {
+	'@oxmysql/lib/MySQL.lua',
 	'server/sv_ui.lua'
 }
 

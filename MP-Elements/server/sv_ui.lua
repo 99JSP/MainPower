@@ -43,3 +43,12 @@ AddEventHandler('MP-Elements:Server:UpdateBank', function(source, change, amount
         print('Error - Cannot find player')
     end
 end)
+
+
+-- RegisterCommand("new", function(source, args, rawCommand)
+-- 	local Player = tonumber(args[1])
+--     local bankingType = tostring(args[2]) -- # amount
+-- 	local amount = tonumber(args[3])
+-- 	local changer = tostring(args[4])
+-- 	exports['MP-Base']:changeMoney(source, bankingType, amount, changer)
+-- end, false)
