@@ -42,10 +42,10 @@ end)
 
 MP.Admin.Setup = function(source, identifier)
     MySQL.query('SELECT * FROM ranking WHERE identifier = @identifier', {['@identifier'] = identifier}, function(result)
+		if (result[1].identifier == nil) then return end
         local slefA = {}
         slefA.Data = {}
         slefA.Functions = {}
-
         slefA.Data.identifier = result[1].identifier
         slefA.Data.usergroup = result[1].usergroup
 

@@ -27,7 +27,6 @@ server_scripts{
     "character/sv_char.lua",
     "core/sv_core.lua",
 	"admin/sv_admin.lua",
-    "commands/sv_commands.lua",
     "player/player.lua",
 }
 

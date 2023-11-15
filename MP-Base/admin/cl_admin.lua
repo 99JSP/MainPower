@@ -19,13 +19,13 @@ local blank = -1
 
 
 
-exports('Admin-SaveCoords', function()
+exports('AdminSaveCoords', function()
     blank = blank +1 -- set to 0 on default
     x, y, z = table.unpack(GetEntityCoords(GetPlayerPed(-1), true))
     TriggerServerEvent('MP-Admin:SaveCoords', blank, x, y, z)
 end)
 
-exports('MP-SpawnVehicle', function(vehicle)
+exports('MPSpawnVehicle', function(vehicle)
     local PlayerPos = GetEntityCoords(GetPlayerPed(-1))
     RequestModel(GetHashKey(vehicle))
     if not IsModelValid(GetHashKey(vehicle)) then

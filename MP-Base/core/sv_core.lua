@@ -10,7 +10,7 @@ AddEventHandler('MP-Base:ServerStart', function()
     end)
 end)
 
--- CHANGE TO EXPORT
+-- CHANGE TO EXPORT will edit for typescript later
 -- RegisterNetEvent('MP-Base:server:getObject')
 -- AddEventHandler('MP-Base:server:getObject', function(callback)
 --     callback(MP)

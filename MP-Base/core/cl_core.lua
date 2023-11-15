@@ -12,6 +12,7 @@ function MP.Base.Start(self)
 end
 MP.Base.Start(self)
 
+
 exports('GetObject', function()
     return MP
 end)
@@ -22,9 +23,14 @@ end)
 exports('updateGroup', function(group)
 	MP.PlayerData.UserGroups = group
 end)
--- RegisterNetEvent("MP-Admin:updateGroup")
--- AddEventHandler("MP-Admin:updateGroup", function(group)
--- end)
+
+
+RegisterNetEvent("MP-Admin:updateGroup")
+AddEventHandler("MP-Admin:updateGroup", function(group)
+	MP.PlayerData.UserGroups = group
+end)
+
+
 CreateThread(function()
     while true do
         local sleep = 0
