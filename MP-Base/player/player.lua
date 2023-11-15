@@ -25,11 +25,12 @@ MP.Player.LoadData = function(source, identifier, cid)
 
 		self.Functions.UpdateMoney = function(bankingType, amount, change)
 			-- print(" bankingtype =" .. bankingType .. "amount =" .. amount .. "changer =" .. change .. "")
-
 			if bankingType == "cash" then
 				if tostring(change) == "add" then
+					TriggerClientEvent("MP-Elements:Client:UpdateCash", self.Data.PlayerId, amount, tostring(change))
 					self.Data.cash = self.Data.cash + amount
 				elseif tostring(change) == "del" then
+					TriggerClientEvent("MP-Elements:Client:UpdateCash", self.Data.PlayerId, amount, tostring(change) )
 					self.Data.cash = self.Data.cash - amount
 				end
 			elseif bankingType == "bank" then
@@ -87,14 +88,6 @@ MP.Player.LoadData = function(source, identifier, cid)
     end)
 
 end
-
--- RegisterCommand('testing', function(source)
--- 	local ped = GetPlayerPed(source)
---     local pcoords = GetEntityCoords(ped)
---     local PlayerData = MP.Players[source].Data
--- 	print(PlayerData)
--- end)
-
 
 function MP.Functions.UpdateMoney(player, bankingType, amount, change)
     local PlayerData = player.Data
