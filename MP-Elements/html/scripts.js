@@ -29,7 +29,7 @@ $(document).ready(function () {
 
 		if (event.data.action == "addcash") {
 			var element = $(
-				"<div class='cashchange'><font style='color: rgb(255, 255, 255); font-weight: 700;hasrfa margin-right: 6px;'>+ <span id='dollar-plus'>$  </span>" +
+				"<div class='cashchange'><font style='color: rgb(34, 139, 34); font-weight: 700; margin-right: 6px;'>+ <span id='dollar-plus'>$  </span>" +
 					data.value +
 					"</font></div>",
 			);
@@ -43,7 +43,7 @@ $(document).ready(function () {
 
 		if (event.data.action == "removecash") {
 			var element = $(
-				"<div class='cashchange'><font style='color: rgb(255, 255, 255); font-weight: 700;hasrfa margin-right: 6px;'>- <span id='dollar-min'>$  </span>" +
+				"<div class='cashchange'><font style='color: rgb(139,0,0); font-weight: 700; margin-right: 6px;'>- <span id='dollar-plus'>$  </span>" +
 					data.value +
 					"</font></div>",
 			);

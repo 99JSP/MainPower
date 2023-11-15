@@ -4,6 +4,8 @@ game 'gta5'
 
 ui_page 'html/index.html'
 
+author 'JSP'
+
 client_scripts {
 	'client/cl_ui.lua',
 }
