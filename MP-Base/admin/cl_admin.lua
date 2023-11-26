@@ -1,10 +1,11 @@
-local blank = -1
--- RegisterNetEvent('MP-Admin:Client:SaveCoords')
--- AddEventHandler('MP-Admin:Client:SaveCoords', function()
---     blank = blank +1 -- set to 0 on default
---     x, y, z = table.unpack(GetEntityCoords(GetPlayerPed(-1), true))
---     TriggerServerEvent('MP-Admin:SaveCoords', blank, x, y, z)
--- end)
+local blank = 0
+RegisterNetEvent('MP-Admin:Client:SaveCoords')
+AddEventHandler('MP-Admin:Client:SaveCoords', function(source)
+	print("Workings?")
+    blank = blank +1 -- set to 0 on default
+    local x, y, z = table.unpack(GetEntityCoords(GetPlayerPed(-1), true))
+    TriggerServerEvent('MP-Admin:SaveCoords', blank, x, y, z)
+end)
 
 -- RegisterNetEvent('MP-Admin:SpawnVehicle')
 -- AddEventHandler('MP-Admin:SpawnVehicle', function(vehicle)
@@ -22,7 +23,7 @@ local blank = -1
 exports('AdminSaveCoords', function()
     blank = blank +1 -- set to 0 on default
     x, y, z = table.unpack(GetEntityCoords(GetPlayerPed(-1), true))
-    TriggerServerEvent('MP-Admin:SaveCoords', blank, x, y, z)
+    TriggerEvent('MP-Admin:Client:SaveCoords')
 end)
 
 exports('MPSpawnVehicle', function(vehicle)

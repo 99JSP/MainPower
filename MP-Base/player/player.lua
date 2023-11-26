@@ -23,25 +23,56 @@ MP.Player.LoadData = function(source, identifier, cid)
 		self.Data.metadata = result[1].metadata
         self.Data.citizenid = '' ..  self.Data.cid .. '-' .. self.Data.identifier .. ''
 
+		self.Functions.swapMoney = function(bankingType, amount)
+			-- banking ids will be added here later
+			if bankingType == "cash" then
+				if (amount > self.Data.bank) then
+					TriggerClientEvent('chat:addMessage', self.Data.PlayerId, "Banking: Not enough in bank.");
+				else
+					self.Data.cash = self.Data.cash + amount
+					print(self.Data.cash)
+					self.Data.bank = self.Data.bank - amount
+					print(self.Data.bank)
+					MP.Functions.UpdateMoney(self)
+				end
+			elseif bankingType == "bank" then
+				-- swap to bank
+				if (amount > self.Data.cash) then
+					TriggerClientEvent('chat:addMessage', self.Data.PlayerId, "Banking: Not enough cash.");
+				else
+					self.Data.cash = self.Data.cash - amount
+					print(self.Data.cash)
+					self.Data.bank = self.Data.bank + amount
+					print(self.Data.bank)
+					MP.Functions.UpdateMoney(self)
+				end
+			end
+			TriggerClientEvent("MP-Elements:Client:UpdateMoney", self.Data.PlayerId)
+		end
+
 		self.Functions.UpdateMoney = function(bankingType, amount, change)
-			-- print(" bankingtype =" .. bankingType .. "amount =" .. amount .. "changer =" .. change .. "")
 			if bankingType == "cash" then
 				if tostring(change) == "add" then
 					TriggerClientEvent("MP-Elements:Client:UpdateCash", self.Data.PlayerId, amount, tostring(change))
 					self.Data.cash = self.Data.cash + amount
 				elseif tostring(change) == "del" then
-					TriggerClientEvent("MP-Elements:Client:UpdateCash", self.Data.PlayerId, amount, tostring(change) )
-					self.Data.cash = self.Data.cash - amount
+					if amount > self.Data.cash then
+						TriggerClientEvent('chat:addMessage', self.Data.PlayerId, "System: Not Enough Cash.")
+					else
+						TriggerClientEvent("MP-Elements:Client:UpdateCash", self.Data.PlayerId, amount, tostring(change) )
+						self.Data.cash = self.Data.cash - amount
+					end
 				end
 			elseif bankingType == "bank" then
 				if tostring(change) == "add" then
 					self.Data.bank = self.Data.bank + amount
+					MP.Functions.UpdateMoney(self)
 				elseif tostring(change) == "del" then
 					self.Data.bank = self.Data.bank - amount
+					MP.Functions.UpdateMoney(self)
 				end
 			end
-			MP.Functions.UpdateMoney(self, bankingType, amount, change)
-			self.Functions.UpdatePlayerData()
+			MP.Player.Save(source)
 		end
 
 		function self.Functions.Save()
@@ -89,9 +120,8 @@ MP.Player.LoadData = function(source, identifier, cid)
 
 end
 
-function MP.Functions.UpdateMoney(player, bankingType, amount, change)
+function MP.Functions.UpdateMoney(player)
     local PlayerData = player.Data
-	if not newAmmount and not change then end -- ends no issue nothing happens
 	if PlayerData then -- making sure data is grabbed
 		-- saves cash/bank on update
 		MySQL.query("UPDATE players SET bank = :bank, cash = :cash WHERE citizenid = :citizenid", {

@@ -28,16 +28,6 @@ exports('changeMoney', function(source, bankingType, amount, changer)
     end
 end)
 
-
--- Commands
-AddEventHandler('MP-Base:addCommand', function(command, callback, suggestion, args)
-    MP.Functions.addCommand(command, callback, suggestion, args)
-end)
-
-AddEventHandler('MP-Base:addGroupCommand', function(command, group, callback, callbackfailed, suggestion, args)
-    MP.Functions.addGroupCommand(command, group, callback, callbackfailed, suggestion, args)
-end)
-
 -- Callback Server
 RegisterServerEvent('MP-Base:server:triggerServerCallback')
 AddEventHandler('MP-Base:server:triggerServerCallback', function(name, requestId, ...)
