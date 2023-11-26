@@ -14,26 +14,31 @@ AddEventHandler('MP-Elements:client:CloseCharUI', function()
     SendNUIMessage({action = "hide"})
 end)
 
+RegisterNetEvent('MP-Elements:Client:UpdateMoney')
+AddEventHandler('MP-Elements:Client:UpdateMoney', function(amount,change,value)
+	MP.Functions.TriggerServerCallback('MP-Elements:Server:getMoney', function(cash, bank)
+	end)
+end)
+
 RegisterNetEvent('MP-Elements:Client:UpdateCash')
 AddEventHandler('MP-Elements:Client:UpdateCash', function(amount,change,value)
+	SendNUIMessage({action = "show"})
     SendNUIMessage({action = 'updateValue', key = 'cash', value = amount})
-	print(change)
 	if change ==  "del" then change = "remove" end
     if change == 'add' then
 		MP.Functions.TriggerServerCallback('MP-Elements:Server:getMoney', function(cash, bank)
 			SendNUIMessage({action = 'setValue', key = 'cash', value = cash})
 			SendNUIMessage({action = 'addcash', value = amount})
 		end)
-		Wait(2000t)
-		SendNUIMessage({action = "hide"})
+		Wait(2000)
     elseif change == 'remove' then
 		MP.Functions.TriggerServerCallback('MP-Elements:Server:getMoney', function(cash, bank)
 			SendNUIMessage({action = 'setValue', key = 'cash', value = cash})
 			SendNUIMessage({action = 'removecash', value = amount})
 		end)
-		Wait(2000t)
-		SendNUIMessage({action = "hide"})
+		Wait(2000)
     end
+	SendNUIMessage({action = "hide"})
 end)
 
 RegisterCommand('cash', function(source, args)
