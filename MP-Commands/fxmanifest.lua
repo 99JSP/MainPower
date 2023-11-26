@@ -5,6 +5,6 @@ author 'JSP'
 
 
 server_scripts {
-	'build/server/commands.js',
-	'build/server/server.js',
+	'build/commands.js',
+	'build/server.js',
 }

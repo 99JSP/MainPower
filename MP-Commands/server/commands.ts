@@ -11,9 +11,15 @@ export const commands = [
             const id = Player.Data.PlayerId;
             const first = Player.Data.firstname;
             const last = Player.Data.lastname;
-            const full = `|${id}| ${first} ${last} `;
+            const full = `|${id}| ${first} ${last}`;
 
-            emitNet('chatMessage', -1, `OOC: ${full} `, 2, msg);
+			if (msg.length === 0) {
+				// dudes an idiot and forgot to type a msg LOL
+			} else {
+				emitNet('chat:addMessage', -1, `OOC: ${full}: ${msg}`);
+			}
+
+
         }
     },
 	{
@@ -27,7 +33,6 @@ export const commands = [
 			const amount = parseInt(args[2])  // amount
 			const changer = (args[3]) // add or del
 			if (Player !== null)  {
-
 				global.exports['MP-Base'].changeMoney(target, bankingType, amount, changer)
 			} else  {
 				emitNet('MP-Elements:SendNotification', source,  2, "No Player Found." )
@@ -41,9 +46,12 @@ export const commands = [
         isAdmin: true,
         handler: (source: number, args: string[]) => {
 			const src = source
-			global.exports['MP-Base'].AdminSaveCoords(src)
+			const Player = MP.Functions.GetPlayer(src)
+			emitNet("chatMessage", -1, `CONSOLE: ${Player.Data.cid}`, 3);
+			emitNet("MP-Admin:Client:SaveCoords", source)
         }
     },
+
 	{
         name: "console",
         suggestion: "used for rcon",
@@ -58,24 +66,50 @@ export const commands = [
         suggestion: "used for rcon",
         isAdmin: true,
         handler: (source: number, args: string[]) => {
-		const target: number = parseInt(args[0]); // player id in game
-		const group = args[1]; // group [admin, mod, dev]
+			const target: number = parseInt(args[0]); // player id in game
+			const group = args[1]; // group [admin, mod, dev]
 
-		const player = MP.Functions.GetPlayer(target);
+			const player = MP.Functions.GetPlayer(target);
 
-		if (target !== null) {
-			if (player) {
-				if (MP.UserGroups[group]) {
-					MP.Functions.setGroup(player, group);
-					emitNet('MP-Elements:SendNotification', target, 1, `Set Group Correctly to ${group}`);
+			if (target !== null) {
+				if (player) {
+					if (MP.UserGroups[group]) {
+						MP.Functions.setGroup(player, group);
+						emitNet('MP-Elements:SendNotification', target, 1, `Set Group Correctly to ${group}`);
+					} else {
+						emitNet('MP-Elements:SendNotification', source, 2, 'Incorrect Group');
+						// Add log for people trying to edit someone's perms
+					}
 				} else {
-					emitNet('MP-Elements:SendNotification', source, 2, 'Incorrect Group');
-					// Add log for people trying to edit someone's perms
+					emitNet('MP-Elements:SendNotification', source, 2, 'No Player Found.');
 				}
-			} else {
-				emitNet('MP-Elements:SendNotification', source, 2, 'No Player Found.');
 			}
-}
+		}
+	},
+	{
+        name: "addMoney",
+        suggestion: "adds money to player id, cash/bank, amount",
+        isAdmin: true,
+        handler: (source: number, args: string[]) => {
+			const target: number = parseInt(args[0]); // player id in game
+			const type = args[1]; // cash or bank
+			const amount = parseInt(args[2]); // amount
+
+			const player = MP.Functions.GetPlayer(target);
+
+			if (target !== null) {
+				if (player) {
+					if (type && amount) {
+						global.exports['MP-Base'].changeMoney(target, type, amount, 'add');
+						emitNet('MP-Elements:SendNotification', target, 1, `Added ${amount} to ${type} for ${player.Data.firstname} ${player.Data.lastname}`);
+					} else {
+						emitNet('MP-Elements:SendNotification', source, 2, 'Incorrect amount or type');
+						// Add log for people trying to edit someone's perms
+					}
+				} else {
+					emitNet('MP-Elements:SendNotification', source, 2, 'No Player Found.');
+				}
+			}
 		}
     },
     // Other commands

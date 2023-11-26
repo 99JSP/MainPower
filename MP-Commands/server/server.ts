@@ -16,14 +16,14 @@ function registerCommands() {
                 }
             },
             false
-        );
-    }
+			);
+			emitNet("chat:addSuggestion", -1, `/${command.name}`, command.suggestion)
+		}
 }
 
 
 registerCommands();
 
 on('playerConnecting', () => {
-    // This code will run when a player connects
     registerCommands(); // Call the function to register commands
 });

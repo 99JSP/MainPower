@@ -4,7 +4,7 @@
 	"description": "",
 	"scripts": {
 		"build": "node ./prod.build.js",
-		"watch": "esbuild --watch --bundle --minify --platform=browser --target=es2020 --outdir=build ./client/*.ts ./server/*.ts"
+		"watch": "esbuild --watch --bundle --minify --platform=browser --target=es2020 --outdir=build ./server/*.ts"
 	},
 	"keywords": [],
 	"author": "",
