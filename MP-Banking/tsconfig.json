@@ -1,0 +1,16 @@
+{
+  "compilerOptions": {
+    "noImplicitAny": true,
+    "module": "ES2022",
+    "target": "ES2022",
+    "allowJs": false,
+    "lib": ["ES2021", "DOM"],
+    "types": ["@citizenfx/server", "@citizenfx/client", "@types/node"],
+    "moduleResolution": "node",
+    "resolveJsonModule": true,
+    "esModuleInterop": true
+  },
+  "include": ["./**/*"],
+  "exclude": ["node_modules", "**/__tests__/*"],
+  "semi": [true,"always"]
+}

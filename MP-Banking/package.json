@@ -1,0 +1,35 @@
+{
+  "name": "fivem-react-typescript-master",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "private": true,
+  "workspaces": [
+    "packages/*"
+  ],
+  "scripts": {
+    "watch": "lerna run watch --stream --parallel",
+    "watch:web": "lerna run watch:web --stream --parallel",
+    "build": "lerna run build --stream --parallel"
+  },
+  "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^5.40.1",
+    "@typescript-eslint/parser": "^5.40.1",
+    "eslint": "^8.25.0",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-import-resolver-typescript": "^3.5.2",
+    "eslint-plugin-import": "^2.26.0",
+    "eslint-plugin-prettier": "^4.2.1",
+    "eslint-plugin-react": "^7.31.10",
+    "eslint-plugin-react-hooks": "^4.6.0",
+    "lerna": "^6.0.1",
+    "prettier": "^2.7.1"
+  },
+  "dependencies": {
+    "@citizenfx/client": "^2.0.5963-1",
+    "@citizenfx/server": "^2.0.5963-1",
+    "@types/node": "^18.11.2",
+    "concurrently": "^7.4.0",
+    "typescript": "^4.8.4"
+  }
+}

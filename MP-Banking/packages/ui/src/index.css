@@ -1,0 +1,234 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  margin: 0;
+  padding: 0;
+}
+
+.banking {
+  display: flex;
+  flex-direction: column;
+  margin: 10% auto auto auto;
+  max-width: 80vw;
+  max-height: 80vh;
+  width: 60vw;
+  height: 50vh;
+  background: #06050c;
+  color: #fecc66;
+  border-radius: 12px;
+  /* #06050c */
+  /* 0d161f */
+  /* fecc66 */
+}
+
+.banking__container {
+  width: 100%;
+  height: 100%;
+  margin: auto;
+}
+
+.header__content {
+  display: flex;
+  width: 90%;
+  margin: auto;
+  height: 7vh;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.banking__container--header {
+  width: 100%;
+  height: 7vh;
+  border-bottom: 1px solid white;
+  background: #0d161f;
+}
+
+.banking__container--header,
+h3 {
+  font-size: 24px;
+  font-weight: 600;
+}
+
+.banking__container--header-left {
+  display: flex;
+  align-items: center;
+  height: inherit;
+  gap: 1vw;
+  font-size: 16px;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+.banking__container--header-left > img {
+  width: 50px;
+  height: auto;
+}
+
+.banking__container--account {
+  width: 90%;
+  height: 20vh;
+  background: #0d161f;
+  border-radius: 12px;
+  margin: auto;
+}
+
+.account__info {
+  display: flex;
+  flex-direction: column;
+  gap: 2vh;
+  width: 90%;
+  height: 20vh;
+  margin: 2vh auto auto auto;
+}
+
+.banking__container--account-name {
+  margin-top: 1vh;
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 18px;
+}
+
+.banking__container--account-amount {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  color: #fecc66;
+  letter-spacing: 2px;
+}
+
+h3 {
+  display: flex;
+  gap: 1vw;
+  font-size: 42px;
+}
+
+.width100 {
+  display: flex;
+  width: 80%;
+  justify-content: space-between;
+  padding-top: 2vh;
+  margin: auto;
+}
+
+.width50 {
+  display: flex;
+  width: 50%;
+  justify-content: space-between;
+  padding-top: 2vh;
+  margin: auto;
+}
+
+.gap2 {
+  display: flex;
+  justify-content: center;
+  gap: 2vw;
+}
+
+input {
+  display: flex;
+  width: 10vw;
+  height: 4vh;
+  background: #0d161f;
+  color: #fff;
+  border: none;
+  transition: 0.5s all;
+  outline: none;
+  border-radius: 6px;
+  padding-left: 2px;
+  justify-content: center;
+  font-weight: 600;
+}
+
+input:focus {
+  transition: 0.5s all;
+  background: #fecc66;
+  justify-content: center;
+  color: #0d161f;
+  border: 1px solid #0d161f;
+  outline: none;
+  border-radius: 6px;
+}
+
+.confrim-Button {
+  display: flex;
+  width: 12vw;
+  height: 4vh;
+  background: #96fe66;
+  align-items: center;
+  justify-content: center;
+  text-transform: uppercase;
+  font-weight: 600;
+  color: #0d161f;
+  border: none;
+  border-radius: 12px;
+  transition: 0.5s all;
+}
+
+.return-Button {
+  display: flex;
+  width: 10vw;
+  height: 4vh;
+  background: #fe6666;
+  align-items: center;
+  justify-content: center;
+  text-transform: uppercase;
+  font-weight: 600;
+  color: #0d161f;
+  border: none;
+  border-radius: 12px;
+  transition: 0.5s all;
+}
+
+.banking-Button {
+  display: flex;
+  width: 10vw;
+  height: 4vh;
+  background: #fecc66;
+  align-items: center;
+  justify-content: center;
+  text-transform: uppercase;
+  font-weight: 600;
+  color: #0d161f;
+  border: none;
+  border-radius: 12px;
+  transition: 0.5s all;
+}
+
+.banking-Button:hover {
+  transition: 0.5s all;
+  background: #0d161f;
+  color: #fecc66;
+}
+.green {
+  color: rgb(53, 202, 53);
+}
+
+p {
+  font-size: 12px;
+}
+.exit {
+  display: flex;
+  width: 6vw;
+  height: 3vh;
+  justify-content: center;
+  align-items: center;
+  text-transform: uppercase;
+  font-weight: 600;
+  background: #0d161f;
+  border-radius: 12px;
+  color: #fecc66;
+}
+
+.end-flex {
+  display: flex;
+  width: 90%;
+  height: 3vh;
+  align-items: center;
+  justify-content: space-between;
+  color: #fff;
+  letter-spacing: 1px;
+  margin: auto;
+  padding-bottom: 1vh;
+}

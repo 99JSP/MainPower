@@ -1,0 +1,17 @@
+{
+  "name": "resource",
+  "version": "1.0.0",
+  "main": "index.js",
+  "private": true,
+  "license": "MIT",
+  "dependencies": {
+    "@project-error/pe-utils": "^0.3.0",
+    "esbuild": "^0.15.13",
+    "esbuild-plugin-fileloc": "^0.0.6"
+  },
+  "scripts": {
+    "watch:web": "node scripts/watch.js",
+    "watch": "node scripts/watch.js",
+    "build": "node scripts/build.js"
+  }
+}
