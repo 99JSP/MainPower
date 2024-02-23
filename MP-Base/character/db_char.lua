@@ -42,21 +42,22 @@ end)
 
 MP.Admin.Setup = function(source, identifier)
     MySQL.query('SELECT * FROM ranking WHERE identifier = @identifier', {['@identifier'] = identifier}, function(result)
-		if (result[1].identifier == nil) then return end
-        local slefA = {}
-        slefA.Data = {}
-        slefA.Functions = {}
-        slefA.Data.identifier = result[1].identifier
-        slefA.Data.usergroup = result[1].usergroup
+        if (result[1] ~= nil and result[1].identifier == identifier) then
+			local slefA = {}
+			slefA.Data = {}
+			slefA.Functions = {}
+			slefA.Data.identifier = result[1].identifier
+			slefA.Data.usergroup = result[1].usergroup
 
-        slefA.Functions.setGroup = function(group)
-            slefA.Data.usergroup = group
-            MP.Functions.setGroup(slefA, group)
+			slefA.Functions.setGroup = function(group)
+				slefA.Data.usergroup = group
+				MP.Functions.setGroup(slefA, group)
+			end
+
+			MP.APlayers[source] = slefA
+			print(slefA.Data.usergroup)
+			ExecuteCommand('add_principal identifier.' .. result[1].identifier .. " group." .. slefA.Data.usergroup)
+			print('[MP] '..result[1].identifier..', Updated To Group: '..slefA.Data.usergroup..' was successfull!')
         end
-
-        MP.APlayers[source] = slefA
-        print(slefA.Data.usergroup)
-        ExecuteCommand('add_principal identifier.' .. result[1].identifier .. " group." .. slefA.Data.usergroup)
-        print('[MP] '..result[1].identifier..', Updated To Group: '..slefA.Data.usergroup..' was successfull!')
     end)
 end

@@ -19,6 +19,7 @@ MP.Player.LoadData = function(source, identifier, cid)
         self.Data.cash = result[1].cash
         self.Data.bank = result[1].bank
 		self.Data.job = result[1].job
+		self.Data.bankingId = result[1].bankingId
 		self.Data.phone = result[1].phone
 		self.Data.metadata = result[1].metadata
         self.Data.citizenid = '' ..  self.Data.cid .. '-' .. self.Data.identifier .. ''
@@ -115,7 +116,6 @@ MP.Player.LoadData = function(source, identifier, cid)
 		end
 
         MP.Players[source] = self
-		print("DATA LOADED")
     end)
 
 end
