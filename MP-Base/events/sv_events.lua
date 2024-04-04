@@ -55,7 +55,7 @@ end
 MP.Functions.LoadPlayer = function(source, pData, cid, new)
     local src 			= source
 	local identifier 	= pData.identifier
-	-- local player = MP.Functions.GetPlayer(source)
+	local player = MP.Functions.GetPlayer(source)
 
 	Wait(7)
 	MySQL.query('SELECT * FROM players WHERE identifier = @identifier AND cid = @cid', {['@identifier'] = identifier, ['@cid'] = cid}, function(result)
@@ -75,6 +75,8 @@ MP.Functions.LoadPlayer = function(source, pData, cid, new)
 			cash = result[1].cash,
 			bank = result[1].bank,
 			phone = result[1].phone,
+			job = result[1].job,
+			job_grade = result[1].job_grade,
 			citizenid = result[1].citizenid,
 			new = result[1].new
         })

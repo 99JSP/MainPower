@@ -19,10 +19,23 @@ MP.Player.LoadData = function(source, identifier, cid)
         self.Data.cash = result[1].cash
         self.Data.bank = result[1].bank
 		self.Data.job = result[1].job
+		self.Data.job_grade = result[1].job_grade
 		self.Data.bankingId = result[1].bankingId
 		self.Data.phone = result[1].phone
 		self.Data.metadata = result[1].metadata
         self.Data.citizenid = '' ..  self.Data.cid .. '-' .. self.Data.identifier .. ''
+
+
+		self.Functions.switchJob = function(newJob, grade)
+			if newJob ~= nil then
+				self.Data.job = newJob
+				self.Data.job_grade = grade
+				-- MP.Functions.UpdateJob(self)
+				-- self.Functions.UpdatePlayerData()
+			end
+			MP.Player.Save(source)
+		end
+
 
 		self.Functions.swapMoney = function(bankingType, amount)
 			-- banking ids will be added here later
@@ -74,20 +87,21 @@ MP.Player.LoadData = function(source, identifier, cid)
 				end
 			end
 			MP.Player.Save(source)
+
 		end
 
 		function self.Functions.Save()
 			if self.Offline then
 				MP.Player.SaveOffline(self.Data)
 			else
-				MP.Player.Save(self.Data.PlayerId)
+				MP.Player.Save(self.Data)
 			end
 		end
 
 		function self.Functions.UpdatePlayerData()
 			if self.Offline then return end -- Unsupported for Offline Players
 			TriggerEvent('MP:Player:SetPlayerData', self.Data)
-			TriggerClientEvent('MP:Player:SetPlayerData', self.Data.PlayerId, self.Data)
+			TriggerClientEvent('MP-SetCharData', self.Data.PlayerId, self.Data)
 		end
 
 		function self.Functions.SetMetaData(meta, val)
@@ -133,13 +147,23 @@ function MP.Functions.UpdateMoney(player)
 	end
 end
 
+function MP.Functions.UpdateJob(player)
+    local PlayerData = player.Data
+	if PlayerData then
+		MySQL.query("UPDATE players SET job = :job, job_grade = :job_grade WHERE citizenid = :citizenid", {
+			['job'] = PlayerData.job,
+			['job_grade'] = PlayerData.job_grade,
+		})
+	end
+end
 
 function MP.Player.Save(source)
     local ped = GetPlayerPed(source)
+	local player = MP.GetPlayer(source)
     local pcoords = GetEntityCoords(ped)
     local PlayerData = MP.Players[source].Data
     if PlayerData then
-        MySQL.query("UPDATE players SET cid = :cid, license = :license, name = :name, sex = :sex, cash = :cash, bank = :bank, job = :job, phone = :phone, metadata = :metadata WHERE citizenid = :citizenid", {
+        MySQL.query("UPDATE players SET cid = :cid, license = :license, name = :name, sex = :sex, cash = :cash, bank = :bank, job = :job, job_grade = :job_grade, phone = :phone, metadata = :metadata WHERE citizenid = :citizenid", {
 			['citizenid'] = PlayerData.citizenid,
 			['cid'] = tonumber(PlayerData.cid),
 			['license'] = PlayerData.license,
@@ -148,10 +172,13 @@ function MP.Player.Save(source)
 			['cash'] = PlayerData.cash,
 			['bank'] = PlayerData.bank,
 			['job'] = PlayerData.job,
+			['job_grade'] = PlayerData.job_grade,
 			['phone'] = PlayerData.phone,
-			['metadata'] = json.encode(PlayerData.metadata),
+			['metadata'] = PlayerData.metadata,
 		})
         print("Player Saved")
+
+		player.Functions.UpdatePlayerData()
     else
         print("err playerdata = nil")
     end
@@ -159,7 +186,7 @@ end
 
 function MP.Player.SaveOffline(PlayerData)
     if PlayerData then
-        MySQL.Async.query("UPDATE players SET cid = :cid, license = :license, name = :name, sex = :sex, cash = :cash, bank = :bank, job = :job, phone = :phone, metadata = :metadata WHERE citizenid = :citizenid", {
+        MySQL.Async.query("UPDATE players SET cid = :cid, license = :license, name = :name, sex = :sex, cash = :cash, bank = :bank, job = :job, job_grade = :job_grade, phone = :phone, metadata = :metadata WHERE citizenid = :citizenid", {
 			['citizenid'] = PlayerData.citizenid,
 			['cid'] = tonumber(PlayerData.cid),
 			['license'] = PlayerData.license,
@@ -169,7 +196,7 @@ function MP.Player.SaveOffline(PlayerData)
 			['bank'] = PlayerData.bank,
 			['job'] = PlayerData.job,
 			['phone'] = PlayerData.phone,
-			['metadata'] = json.encode(PlayerData.metadata),
+			['metadata'] = PlayerData.metadata,
 		})
         print("Offline Player Saved")
     else
