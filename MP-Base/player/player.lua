@@ -159,7 +159,6 @@ end
 
 function MP.Player.Save(source)
     local ped = GetPlayerPed(source)
-	local player = MP.GetPlayer(source)
     local pcoords = GetEntityCoords(ped)
     local PlayerData = MP.Players[source].Data
     if PlayerData then
@@ -178,7 +177,7 @@ function MP.Player.Save(source)
 		})
         print("Player Saved")
 
-		player.Functions.UpdatePlayerData()
+		TriggerClientEvent('MP:Player:UpdatePlayerData', ped)
     else
         print("err playerdata = nil")
     end
