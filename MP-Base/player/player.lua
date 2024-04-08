@@ -160,7 +160,7 @@ end
 function MP.Player.Save(source)
 	local ped = GetPlayerPed(source)
     local pcoords = GetEntityCoords(ped)
-    local PlayerData = MP.Players[source].Data
+    local PlayerData = self.Data
     -- local PlayerData = MP.Players[source].Data
     if PlayerData then
         MySQL.query("UPDATE players SET cid = :cid, license = :license, name = :name, sex = :sex, cash = :cash, bank = :bank, job = :job, job_grade = :job_grade, phone = :phone, metadata = :metadata WHERE citizenid = :citizenid", {

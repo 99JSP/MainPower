@@ -185,7 +185,7 @@ RegisterNetEvent('MP:UpdatePlayer', function()
     local src = source
     local Player = MP.Functions.GetPlayer(src)
     if not Player then return end
-    Player.Functions.Save()
+    Player.Functions.Save(src)
 end)
 
 function MP.Functions.GetPlayers()
@@ -197,6 +197,6 @@ AddEventHandler('playerDropped', function(reason)
     local src = source
     if not MP.Players[src] then return end
     local Player = MP.Players[src]
-    Player.Functions.Save()
+    Player.Functions.Save(src)
     MP.Players[src] = nil
 end)
