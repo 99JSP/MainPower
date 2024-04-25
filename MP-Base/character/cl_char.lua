@@ -97,7 +97,7 @@ AddEventHandler('MP-Base:Char:setupCharacters', function()
 end)
 
 -- EXPORT
-exports('MP-Base:ChangeChar', function()
+exports('ChangeChar', function()
     TriggerEvent('MP-Base:Char:setupCharacters')
 end)
 
