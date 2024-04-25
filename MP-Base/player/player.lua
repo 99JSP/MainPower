@@ -26,6 +26,29 @@ MP.Player.LoadData = function(source, identifier, cid)
         self.Data.citizenid = '' ..  self.Data.cid .. '-' .. self.Data.identifier .. ''
 
 
+		self.Functions.setNewData = function(dataType, newData, newUtilityData)
+			-- print("data = " .. dataType .. "self = " .. self.Data[dataType] .. " send")
+			if self.Data[dataType] ~= nil then
+				-- Update the data based on dataType
+				if self.Data[dataType] == self.Data.Job then
+					self.Data[dataType] = newData
+					self.Data.job_grade = newUtilityData
+					MP.Functions.UpdateNewData(self, dataType, newData)
+					MP.Functions.UpdateNewData(self, "job_grade", newUtilityData)
+
+					TriggerClientEvent('MP-SetCharData', self.Data.PlayerId, self.Data)
+					print("Data sent to client side")
+
+				else
+					self.Data[dataType] = newData
+					MP.Functions.UpdateNewData(self, dataType, newData)
+					TriggerClientEvent('MP-SetCharData', self.Data.PlayerId, self.Data)
+					print("Data sent to client side")
+
+				end
+			end
+		end
+
 		self.Functions.switchJob = function(newJob, grade)
 			if newJob ~= nil then
 				self.Data.job = newJob
@@ -33,7 +56,8 @@ MP.Player.LoadData = function(source, identifier, cid)
 				-- MP.Functions.UpdateJob(self)
 				-- self.Functions.UpdatePlayerData()
 			end
-			MP.Player.Save(source)
+			MP.Functions.UpdateJob(self)
+			-- MP.Player.Save(self.Data)
 		end
 
 
@@ -86,7 +110,7 @@ MP.Player.LoadData = function(source, identifier, cid)
 					MP.Functions.UpdateMoney(self)
 				end
 			end
-			MP.Player.Save(source)
+			MP.Player.Save(self.Data)
 
 		end
 
@@ -134,6 +158,20 @@ MP.Player.LoadData = function(source, identifier, cid)
 
 end
 
+function MP.Functions.UpdateNewData(player, dataType, newData)
+    local PlayerData = player.Data
+    if PlayerData then -- making sure data is grabbed
+        local query = "UPDATE players SET " .. dataType .. " = :" .. dataType .. " WHERE citizenid = :citizenid"
+        local queryParams = {
+            [dataType] = newData,
+            ['citizenid'] = PlayerData.citizenid,
+        }
+        MySQL.query(query, queryParams)
+    end
+end
+
+
+
 function MP.Functions.UpdateMoney(player)
     local PlayerData = player.Data
 	if PlayerData then -- making sure data is grabbed
@@ -147,20 +185,25 @@ function MP.Functions.UpdateMoney(player)
 	end
 end
 
+
 function MP.Functions.UpdateJob(player)
     local PlayerData = player.Data
 	if PlayerData then
 		MySQL.query("UPDATE players SET job = :job, job_grade = :job_grade WHERE citizenid = :citizenid", {
 			['job'] = PlayerData.job,
 			['job_grade'] = PlayerData.job_grade,
+			['citizenid'] = PlayerData.citizenid,
 		})
+		-- Testing for setting an job
+		player.Functions.UpdatePlayerData("job", PlayerData.job)
+		player.Functions.UpdatePlayerData("job", PlayerData.job_grade)
+
 	end
 end
 
-function MP.Player.Save(source)
-	local ped = GetPlayerPed(source)
-    local pcoords = GetEntityCoords(ped)
-    local PlayerData = self.Data
+function MP.Player.Save(player)
+	local PlayerData = player
+	local updatedPlayer = MP.Functions.GetPlayer(player.id)
     -- local PlayerData = MP.Players[source].Data
     if PlayerData then
         MySQL.query("UPDATE players SET cid = :cid, license = :license, name = :name, sex = :sex, cash = :cash, bank = :bank, job = :job, job_grade = :job_grade, phone = :phone, metadata = :metadata WHERE citizenid = :citizenid", {
@@ -177,11 +220,6 @@ function MP.Player.Save(source)
 			['metadata'] = PlayerData.metadata,
 		})
         print("Player Saved")
-
-
-		-- new
-		local sendPlayerData = MP.Functions.GetPlayer(source)
-		sendPlayerData.Functions.UpdatePlayerData()
     else
         print("err playerdata = nil")
     end
