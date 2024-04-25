@@ -151,6 +151,16 @@ RegisterNetEvent('MP:Player:SetPlayerData', function(val)
     MP.PlayerData = val
 end)
 
+
+exports('GetPlayerData', function(dataType)
+	local player = MP.Functions.GetPlayerData(GetPlayerPed(-1))
+    if player ~= nil then
+		print("test")
+		return player[dataType]
+	else
+		print("player nil")
+	end
+end)
 -- Drawing 3d Text export
 
 exports('Draw3dText', function(x,y,z, text)

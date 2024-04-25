@@ -22,6 +22,28 @@ MP.Functions.GetPlayer = function(source)
 	end
 end
 
+exports('GetPlayer', function(source)
+    if MP.Players[source] ~= nil then
+		return MP.Players[source]
+	end
+end)
+
+
+exports('SetPlayersData', function(source, dataType, newData, newUtilityData)
+	-- print("source = " .. source .. " datatype = " .. dataType .. " newData = " .. newData .. " newUtil =" .. newUtilityData .. "!")
+    if MP.Players[source] ~= nil then
+		local player = MP.Players[source]
+		player.Functions.setNewData(dataType, newData, newUtilityData)
+	end
+end)
+
+exports('GetPlayerData', function(source, dataType)
+    if MP.Players[source] ~= nil then
+		local player = MP.Players[source]
+		return player.Data[dataType]
+	end
+end)
+
 MP.Functions.AdminPlayer = function(source) -- Admin
     if MP.APlayers[source] ~= nil then
         return MP.APlayers[source]
@@ -92,65 +114,6 @@ MP.Functions.LoadPlayer = function(source, pData, cid, new)
 	-- exports['ox_inventory']:setPlayerInventory(player.Data)
 end
 
--- MP.Functions.addCommand = function(command, callback, suggestion, args)
---     MP.Commands[command] = {}
--- 	MP.Commands[command].cmd = callback
---     MP.Commands[command].args = args or -1
-
---     if suggestion then
---         if not suggestion.params or not type(suggestion.params) == 'table' then suggestion.params = {} end
---         if not suggestion.help or not type(suggestion.help) == 'string' then suggestion.help = {} end
-
---         MP.CommandsSuggestions[command] = suggestion
---     end
-
---     RegisterCommand(command, function(source, args)
---         if((#args <= MP.Commands[command].args and #args == MP.Commands[command].args) or MP.Commands[command].args == -1) then
---             callback(source, args, MP.Players[source])
---         end
---     end, false)
--- end
-
--- MP.Functions.addGroupCommand = function(command, group, callback, callbackfailed, suggestion, arguments)
--- 	MP.Commands[command] = {}
--- 	MP.Commands[command].perm = math.maxinteger
--- 	MP.Commands[command].group = group
--- 	MP.Commands[command].cmd = callback
--- 	MP.Commands[command].callbackfailed = callbackfailed
--- 	MP.Commands[command].arguments = arguments or -1
-
--- 	if suggestion then
--- 		if not suggestion.params or not type(suggestion.params) == "table" then suggestion.params = {} end
--- 		if not suggestion.help or not type(suggestion.help) == "string" then suggestion.help = "" end
-
--- 		MP.CommandsSuggestions[command] = suggestion
--- 	end
-
--- 	ExecuteCommand('add_ace group.' .. group .. ' command.' .. command .. ' allow')
-
--- 	RegisterCommand(command, function(source, args)
--- 		local Source = source
--- 		local pData = MP.Functions.AdminPlayer(Source)
-
--- 		if(source ~= 0)then
--- 			if pData ~= nil then
--- 				if pData.Data.usergroup == MP.Commands[command].group then
--- 					if((#args <= MP.Commands[command].arguments and #args == MP.Commands[command].arguments) or MP.Commands[command].arguments == -1)then
--- 						callback(source, args, MP.Players[source])
--- 					end
--- 				else
--- 					callbackfailed(source, args, MP.Players[source])
--- 				end
--- 			end
--- 		else
--- 			if((#args <= MP.Commands[command].arguments and #args == MP.Commands[command].arguments) or MP.Commands[command].arguments == -1)then
--- 				callback(source, args, MP.Players[source])
--- 			end
--- 		end
--- 	end, true)
--- end
-
-
 -- Usergroups for admin
 MP.Functions.setGroup = function(player, group)
     local identifier = player.Data.identifier
@@ -185,7 +148,7 @@ RegisterNetEvent('MP:UpdatePlayer', function()
     local src = source
     local Player = MP.Functions.GetPlayer(src)
     if not Player then return end
-    Player.Functions.Save(src)
+    Player.Functions.Save()
 end)
 
 function MP.Functions.GetPlayers()
@@ -197,6 +160,6 @@ AddEventHandler('playerDropped', function(reason)
     local src = source
     if not MP.Players[src] then return end
     local Player = MP.Players[src]
-    Player.Functions.Save(src)
+    Player.Functions.Save()
     MP.Players[src] = nil
 end)
