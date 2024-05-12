@@ -1656,9 +1656,25 @@ RegisterNetEvent('qb-clothes:client:CreateFirstCharacter')
 AddEventHandler('qb-clothes:client:CreateFirstCharacter', function(source)
 	local player = MP.Functions.GetPlayerData(source)
 	if player.sex == "Male" then
-        local skin = "mp_m_freemode_01"
+		local skin = "mp_m_freemode_01"
+		local model = GetHashKey(skin)
+        RequestModel(model)
+        while not HasModelLoaded(model) do
+            RequestModel(model)
+            Citizen.Wait(0)
+        end
+        SetPlayerModel(PlayerId(), model)
+        SetPedComponentVariation(GetPlayerPed(-1), 0, 0, 0, 2)
 	elseif player.sex == "Female" then
 		local skin = "mp_f_freemode_01"
+		local model = GetHashKey(skin)
+        RequestModel(model)
+        while not HasModelLoaded(model) do
+            RequestModel(model)
+            Citizen.Wait(0)
+        end
+        SetPlayerModel(PlayerId(), model)
+        SetPedComponentVariation(GetPlayerPed(-1), 0, 0, 0, 2)
 	end
 
         openMenu({
